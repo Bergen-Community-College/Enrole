@@ -1,0 +1,4 @@
+@import url("desktop.css") (min-width:1024px);
+@import url("tablet.css") (max-width:1023px) and (min-width:768px);
+@import url("mobile.css") (max-width:767px) and (min-width:150px);
+@import url("min.css") (max-width:320px);
