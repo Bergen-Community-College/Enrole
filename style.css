@@ -935,3 +935,11 @@ img{vertical-align:middle}
 	height: auto;
 	margin-left: 1em;
 }
+
+.headerLogo {
+
+  width: 150px;
+  -webkit-filter: drop-shadow(5px 5px 5px #222);
+  filter: drop-shadow(5px 5px 5px #222);
+
+}
