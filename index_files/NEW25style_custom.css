@@ -4001,7 +4001,7 @@ input.searchImg.image_search:hover {
 a.card {
 	width: auto !important;
 	margin: 0 !important;
-	border: none;
+	border: 1px solid #e0d4eb;
 	border-radius: 8px;
 	box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
 	overflow: hidden;
