@@ -9,8 +9,8 @@ if (!String.prototype.startsWith) {
 	});
 }
 
-// Relink header logo to ProEd main website
-document.querySelector('#header_title a').setAttribute('href', 'https://proed.erau.edu/');
+// Relink header logo to Bergen CE main website
+document.querySelector('#header_title a').setAttribute('href', 'https://ce.bergen.edu');
 
 var breadcrumbs = document.getElementById('breadcrumbTop');
 
@@ -37,7 +37,7 @@ if (typeof jQuery !== 'undefined') {
 
 // Test environment only
 // =====================
-if (location.pathname.startsWith('/testerau/')) {
+if (location.pathname.startsWith('/testbergen/')) {
 	// Replace all test links
 	var test_links = document.querySelectorAll('a[data-test-href]');
 	for (var i = test_links.length - 1; i >= 0; i--) {
@@ -60,144 +60,66 @@ if (location.pathname.startsWith('/testerau/')) {
 
 (function () {
 
-	let tag = document.getElementById('erau-wrapper-script') || document.createElement('div'),
+	let tag = document.getElementById('bergen-wrapper-script') || document.createElement('div'),
 		hide_erau_header = tag.getAttribute("hide-header") || false,
-		campus = tag.getAttribute('campus'),
 		custom_links = tag.getAttribute('custom-links'),
 		header_placement = tag.getAttribute('header-placement'),
 		footer_placement = tag.getAttribute('footer-placement'),
 		header_classes = tag.getAttribute('header-classes'),
 		container_width = tag.getAttribute('container-width') || '1140px',
 		container_padding = tag.getAttribute('container-padding') || '30px',
-		emergency_link = tag.getAttribute('emergency-link') || '<a href="//erau.edu/emergency">Emergency Info</a>',
-		directory_link = tag.getAttribute('directory-link') || '<a href="//erau.edu/leadership/directory/">Directory</a>',
-		title_ix_link = tag.getAttribute('title-ix-link') || '<a href="//erau.edu/leadership/title-ix/">Civil Rights Equity&nbsp;&amp; Title&nbsp;IX</a>',
-		military_link = tag.getAttribute('military-link') || '<a href="//erau.edu/terms-use#military-disclaimer">Military Disclaimer</a>',
-		privacy_link = tag.getAttribute('privacy-link') || '<a href="//erau.edu/privacy-statement">Privacy Statement&nbsp;&amp; GDPR</a>',
-		terms_link = tag.getAttribute('terms-link') || '<a href="//erau.edu/terms-use">Terms of Use&nbsp;&amp; Accessibility</a>',
-		sitemap_link = tag.getAttribute('sitemap-link') || '',
-		feedback_link = tag.getAttribute('feedback-link') || '',
+		emergency_link = tag.getAttribute('emergency-link') || '<a href="//ce.bergen.edu">Emergency Info</a>',
+		directory_link = tag.getAttribute('directory-link') || '<a href="//ce.bergen.edu">Directory</a>',
+		title_ix_link = tag.getAttribute('title-ix-link') || '<a href="//ce.bergen.edu">Civil Rights Equity & Title IX</a>',
+		military_link = tag.getAttribute('military-link') || '<a href="//ce.bergen.edu">Military Disclaimer</a>',
+		privacy_link = tag.getAttribute('privacy-link') || '<a href="//ce.bergen.edu">Privacy Statement & GDPR</a>',
+		terms_link = tag.getAttribute('terms-link') || '<a href="//ce.bergen.edu">Terms of Use & Accessibility</a>',
 		separator = tag.getAttribute('separator') || '|',
 		random_id = Math.random().toString(36).replace(/^0\./, '_');
 
 	// Footer Column Links
 	let campuses = [
-		'<a href="//daytonabeach.erau.edu">Daytona Beach, FL Campus</a>',
-		'<a href="//prescott.erau.edu">Prescott, AZ Campus</a>',
-		'<a href="//worldwide.erau.edu">Worldwide Campus</a>',
-		'<a href="//worldwide.erau.edu/online-learning">Online Campus</a>',
-		'<a href="//asia.erau.edu">Asia Campus</a>'
+		'<a href="//ce.bergen.edu">Paramus, NJ Campus</a>'
 	];
 	let col_1 = [
-		'<a href="//erau.edu/libraries">Libraries</a>',
-		'<a href="//commons.erau.edu/">Scholarly Commons</a>',
-		'<a href="//erau.edu/research">Research</a>',
-		'<a href="//faculty.erau.edu/">Faculty Directory</a>',
-		'<a href="//catalog.erau.edu/">Course Catalog</a>'
+		'<a href="//ce.bergen.edu">Library</a>',
+		'<a href="//ce.bergen.edu">Course Catalog</a>',
+		'<a href="//ce.bergen.edu">Academic Calendar</a>',
+		'<a href="//ce.bergen.edu">Faculty Directory</a>',
+		'<a href="//ce.bergen.edu">Registration</a>'
 	];
 	let col_2 = [
-		'<a href="//careerservices.erau.edu/">Career Services</a>',
-		'<a href="//alumni.erau.edu/">Alumni Association</a>',
-		'<a href="//lift.erau.edu/">Lift Magazine</a>',
-		'<a href="//givingto.erau.edu/">Giving to Embry-Riddle</a>',
-		'<a href="//www.givecampus.com/schools/EmbryRiddleAeronauticalUniversity">Crowdfunding</a>',
-		'<a href="//erau.edu/fellowships">Awards and Fellowships</a>'
+		'<a href="//ce.bergen.edu">Career Services</a>',
+		'<a href="//ce.bergen.edu">Alumni Association</a>',
+		'<a href="//ce.bergen.edu">Financial Aid</a>',
+		'<a href="//ce.bergen.edu">Giving to Bergen</a>',
+		'<a href="//ce.bergen.edu">Scholarships</a>'
 	];
 	let col_3 = [
-		'<a href="//proed.erau.edu/">Professional Education</a>',
-		'<a href="//erau.edu/degrees/k-12-summer-programs">K-12 / Dual Enrollment / Summer&nbsp;Camps</a>',
-		'<a href="//erau.edu/athletics">Athletics</a>',
-		'<a href="//erau.edu/leadership/president/presidential-speaker-series">Speaker Series</a>',
-		'<a href="//erau.edu/international-education">International Education</a>'
+		'<a href="//ce.bergen.edu">Continuing Education</a>',
+		'<a href="//ce.bergen.edu">Workforce Development</a>',
+		'<a href="//ce.bergen.edu">Athletics</a>',
+		'<a href="//ce.bergen.edu">Student Life</a>',
+		'<a href="//ce.bergen.edu">International Education</a>'
 	];
 	let col_4 = [
-		'<a href="//careers.erau.edu/">Working at Embry-Riddle</a>',
-		'<a href="//trustees.erau.edu/">Board of Trustees</a>',
-		'<a href="//erau.edu/continuous-improvement/accreditation">Accreditation</a>',
-		'<a href="//erau.edu/leadership/consumer-information">Consumer Information</a>'
+		'<a href="//ce.bergen.edu">Working at Bergen</a>',
+		'<a href="//ce.bergen.edu">Board of Trustees</a>',
+		'<a href="//ce.bergen.edu">Accreditation</a>',
+		'<a href="//ce.bergen.edu">Consumer Information</a>'
 	];
 
 	// Footer Links
-	switch (campus) {
-		case "daytonabeach":
-		case "daytona-beach":
-			if (location.hostname == 'daytonabeach.erau.edu') {
-				sitemap_link = '<a href="//daytonabeach.erau.edu/site-map">Sitemap</a>';
-				feedback_link = '<a href="//daytonabeach.erau.edu/feedback">Web Feedback</a>';
-			}
-			var info_links = 
-				[
-					sitemap_link,
-					directory_link,
-					feedback_link
-				]
-			var legal_links = 
-				[
-					emergency_link,
-					title_ix_link,
-					military_link,
-					privacy_link,
-					terms_link
-				]
-			var footer_address = '1 Aerospace Boulevard<br>Daytona Beach,&nbsp;FL 32114-3900';
-			break;
-		case "prescott":
-			if (location.hostname == 'prescott.erau.edu') {
-				sitemap_link = '<a href="//prescott.erau.edu/site-map">Sitemap</a>';
-				feedback_link = '<a href="//prescott.erau.edu/feedback">Web Feedback</a>';
-			}
-			var info_links = 
-				[
-					sitemap_link,
-					directory_link,
-					feedback_link
-				]
-			var legal_links = 
-				[
-					emergency_link,
-					title_ix_link,
-					military_link,
-					privacy_link,
-					terms_link
-				]
-			var footer_address = '3700 Willow Creek&nbsp;Road<br>Prescott,&nbsp;AZ 86301-3720';
-			break;
-		case "worldwide":
-			if (location.hostname == 'worldwide.erau.edu') {
-				sitemap_link = '<a href="//worldwide.erau.edu/site-map/">Sitemap</a>';
-				feedback_link = '<a href="//worldwide.erau.edu/feedback/">Web Feedback</a>';
-			}
-			var info_links = 
-				[
-					sitemap_link,
-					directory_link,
-					feedback_link,
-					'<a href="//worldwide.erau.edu/administration/contact/">Contact</a>'
-				]
-			var legal_links = 
-				[
-					emergency_link,
-					title_ix_link,
-					military_link,
-					privacy_link,
-					terms_link
-				]
-			var footer_address = '1 Aerospace Boulevard<br>Daytona Beach,&nbsp;FL 32114-3900';
-			break;
-		default:
-			var info_links = [
-				]
-			var legal_links = 
-				[
-					emergency_link,
-					directory_link,
-					title_ix_link,
-					military_link,
-					privacy_link,
-					terms_link
-				]
-			var footer_address = '1 Aerospace Boulevard<br>Daytona Beach,&nbsp;FL 32114-3900';
-	}
+	var info_links = [];
+	var legal_links = [
+		emergency_link,
+		directory_link,
+		title_ix_link,
+		military_link,
+		privacy_link,
+		terms_link
+	];
+	var footer_address = '400 Paramus Road<br>Paramus, NJ 07652';
 
 	// Reduce arrays
 	info_links = info_links.filter(function(e){return e});
@@ -274,9 +196,9 @@ if (location.pathname.startsWith('/testerau/')) {
 		header_div.innerHTML = replace_random_id(`
 			<div id="RANDOM_ID_topbar">
 				<ul>` +
-					(show_give ? '<li><a href="//givingto.erau.edu/"><span>Give to ERAU</span></a></li>' : '') +
-					(show_portal ? '<li><a href="//ernie.erau.edu"><svg class="RANDOM_ID_icon RANDOM_ID_margin_right" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M224 64c44.2 0 80 35.8 80 80v48H144V144c0-44.2 35.8-80 80-80zM80 144v48H64c-35.3 0-64 28.7-64 64V448c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V256c0-35.3-28.7-64-64-64H368V144C368 64.5 303.5 0 224 0S80 64.5 80 144zM256 320v64c0 17.7-14.3 32-32 32s-32-14.3-32-32V320c0-17.7 14.3-32 32-32s32 14.3 32 32z"/></svg><span>ERNIE</span></a></li>' : '') + `
-					<li><a href="//erau.edu/"><span>Embry-Riddle Home</span></a></li>
+					(show_give ? '<li><a href="//ce.bergen.edu"><span>Give to Bergen</span></a></li>' : '') +
+					(show_portal ? '<li><a href="//ce.bergen.edu"><span>Student Portal</span></a></li>' : '') + `
+					<li><a href="//ce.bergen.edu"><span>Bergen Community College Home</span></a></li>
 				</ul>
 			</div>
 		`);
@@ -525,52 +447,51 @@ if (location.pathname.startsWith('/testerau/')) {
 
 	// Prepare Footer HTML
 	let footer_html = `
-		<footer id="RANDOM_ID_footer" aria-label="Legal details and links to other Embry-Riddle websites">
+		<footer id="RANDOM_ID_footer" aria-label="Legal details and links to other Bergen Community College websites">
 			<div id="RANDOM_ID_links">
 				<button id="RANDOM_ID_toggle" type="button" aria-controls="RANDOM_ID_expandable" aria-expanded="false">
 					<div id="RANDOM_ID_button_text">
-						University Links 
+						College Links
 						<svg class="RANDOM_ID_icon down" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"/></svg>
 						<svg class="RANDOM_ID_icon up" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M233.4 105.4c12.5-12.5 32.8-12.5 45.3 0l192 192c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L256 173.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l192-192z"/></svg>
 					</div>
 				</button>
 				<div id="RANDOM_ID_expandable" class="RANDOM_ID_container">` +
 					list(col_1) + '<hr>' +
-					list(campuses, 'Embry-Riddle Campuses') + '<hr>' +
+					list(campuses, 'Bergen Community College Campuses') + '<hr>' +
 					list(col_2) + '<hr>' +
-					list(campuses, 'Embry-Riddle Campuses') + '<hr>' +
+					list(campuses, 'Bergen Community College Campuses') + '<hr>' +
 					list(col_3) + '<hr>' +
 					list(col_4) + `
 				</div>
 			</div>
 			<div id="RANDOM_ID_copyright_row">
 				<div id="RANDOM_ID_logo_row">
-					<p id="RANDOM_ID_logo"><a href="//erau.edu">
-						<svg class="RANDOM_ID_icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><path d="M333 239c12.9-17 27.2-33.5 62.6-54.9c35.4-21.4 63.1-31.8 78.9-33.2c-1.8-2.8-5-6.6-23.5-2.8s-58.4 15.1-58.4 15.1s21.1-12 31.6-16.3c10.5-4.3 32.7-12.1 35.2-12.4c-1.9-3.1-12.5-6.4-27.4-2.7c-27.4 6.8-60.2 23.4-60.2 23.4l55.7-35.9c-2.9-2.9-10.1-2-23.1 2.4s-47.2 22-47.2 22c6.4-7.3 24.8-23.9 35.9-30.3c-3-3.2-10.7-.3-13.3 .4c-8.4 2.5-33.5 14.6-42.7 16.6c1.3-1.7 11.1-10.5 11.8-11.6c-5.1-2.1-6.4-2.7-13.2-.4c-10.3 3.5-43.8 28.7-53.2 43.3c-16.3 4.7-58.2 29.4-86.1 93.2c-4.5-11-12.3-40.7-7.8-85.1c0 0-5-9.2-11.6-25.2s-46.9-118.4-39.2-141.6c-3.1 1.3-5.3 4.6-7.7 10.8c-4.8 12.1-7.7 33.8-1.5 62.3c0 0-22.5-35-26.1-68.7c-5.3 8.9-8.2 12.3-8.9 27.7c-.6 14.4 2.7 39.5 11.2 56.5c0 0-22.4-32-26.4-40.1c-3.9-8.1-4.9-11.3-4.9-11.3c-2.9 3.4-4.5 8-5.1 14c-.8 8.3 6.1 50.6 23.1 74.9c0 0-14.8-15.2-24-27.5c-9.2-12.2-20.8-28.6-20.8-28.6c-1.2 5-1.1 3.4-1.8 13.7c-1 14.7 14 52.1 30.9 68c-3.3-1.5-36.1-28.3-39.2-30.5c-.2 6.5 1.7 25.6 17.2 42.6c15.5 17 22 24.4 22 24.4c-2.4-1.5-17.8-10.6-19.2-11.6c1.3 4.9 3.9 12.3 5.5 15.4c1.6 3 6.5 13.5 20.1 25.3c-2.6-.6-15.3-3.6-19.6-14.3c.4 6.9 1.4 17.6 13.1 30.6c3.4 8.8 29.2 82.4 54.7 97.2c-.5 1.2-1.5 3.5-1.5 3.5c-29.7 10.6-79.9 14.6-110.2 10.8c2.1 2.8 5 7.3 8.8 12.7l39.6-3.4-36.9 7.2c2.2 3 4.7 6.3 7.5 9.6l36.2-10.9-32.5 15.1c2.5 2.8 5.3 5.7 8.3 8.6l32.2-16.9-28.6 20.1c2.6 2.3 5.3 4.6 8.2 6.8l32.2-18.5-28.2 21.5c3.4 2.4 7.1 4.8 10.9 7l30.1-20.8-23.3 24.4c3.3 1.7 6.6 3 10.3 4.5c1.9 .7 27.5-24.3 27.5-24.3s-17.7 27.6-16.2 28.1c2.9 .9 6.2 1.5 9.3 2.2c1.9 .4 20.8-27.9 20.8-27.9s-10.4 27.5-10.3 29.5c3.3 .4 6.3 1.1 9.8 1.3l14.2-28.3 9.1-.3s3.7 21.5 5.7 25.6c2 4 16.8 5.7 22.9 5.4l16.2 9.7c4 .6 8.5 1.9 8.8 4.5s-4.4 6.1-4.8 10.7s-3.4 15.3-4.2 19.6s8.6 8.2 12.9 9.4l-2.9-11.6 7.8-10.3 28.4 17.8 .2 8.9s1.9 .4 7-6.6c7.3-10-18.5-23.7-18.5-23.7l17.3 1.9 3.8 9.2s.7 1.3 2.8-7.6s-27.9-17.6-33.6-20.1s-7.9-7.7-7.9-7.7s2.3-2.3 3-3.6c1.2-2 .2-3.3-2.1-6.6c-2.4-3.3-1.5-2.6-10.1-6.8c-8.7-4.2-15-1.5-6.3-17.4c0 0-3.6 9.2-2.5 11.3s7.4 3.9 12.5 6s6.8 3.4 9.1 7.9c4.6 8.7 19.5 12.2 22.2 15.2c7.1 7.8 22.7 19 32.8 23c8.3 3.3 12.6 21.6 12.6 21.6s-1.8 5.7-4.6 10.6c-2.8 4.9-2.3 7.5-1.4 9.8s6.2 5.1 9.7 6.6l-1.4-10.4 9.2-9.7 35.2 10.7c.8 3.4 1.9 10.1 1.9 10.1s4-1.1 8.3-9.6s-31-20.1-36.5-22.1c26-6.5 33.5-1.9 33.5-1.9s3.9 4.8 4.5 8c0 0 2.2-1.2 3.8-12.7s-43.9-3.7-50.9-4c-2.1-1.7-9.6-11.6-9.3-20.4c.2-8.8-3.9-9-9.7-15.5s-20.6-23.4-21.8-31.6s-2.6-12.2 8.2-17.9s24.2-11.9 24.2-11.9l-.6 2.5s48.4-21.5 59.4-17c7.2 2.9 6.2 5.1 6.5 7.1c13.2-20.7-14.9-24.4-20.3-26.2c.5-5.1-1-11-14.6-13.1s-34.7-4.3-34.7-4.3l.9 1.4s-36-2-41.7-2.4c-5.7-.5-17.9-2.3-17.9-2.3s45.4-17.7 55.7-26.3s33.6-32.6 46.5-49.6m-.3 90.8c1.2 .8 1 1.9 0 3.9l-14.9-4.4c.7 0 13.7-.2 14.9 .5"/></svg>
-						<br>erau.edu</a>
+					<p id="RANDOM_ID_logo"><a href="//ce.bergen.edu">
+						Bergen Community College<br>ce.bergen.edu</a>
 					</p>
 					<p id="RANDOM_ID_offices">
 						Admin Offices: ` +
 							footer_address + `
 					</p>
 					<p id="RANDOM_ID_copyright">
-						&copy; Embry-Riddle Aeronautical&nbsp;University. 
+						© Bergen Community College.
 						<br>All rights reserved.
 					</p>
 				</div>` + 
 				list(legal_links, null, separator) +
 				list(info_links, null, separator) + `
-				<ul id="RANDOM_ID_social" aria-label="Embry-Riddle Social Media Pages">
-					<li><a href="//www.facebook.com/EmbryRiddleUniversity" aria-label="Facebook">
+				<ul id="RANDOM_ID_social" aria-label="Bergen Community College Social Media Pages">
+					<li><a href="//ce.bergen.edu" aria-label="Facebook">
 						<svg class="RANDOM_ID_icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M512 256C512 114.6 397.4 0 256 0S0 114.6 0 256C0 376 82.7 476.8 194.2 504.5V334.2H141.4V256h52.8V222.3c0-87.1 39.4-127.5 125-127.5c16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1c-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H287V510.1C413.8 494.8 512 386.9 512 256h0z"/></svg>
 					</a></li>
-					<li><a href="//twitter.com/EmbryRiddle" aria-label="X">
+					<li><a href="//ce.bergen.edu" aria-label="X">
 						<svg class="RANDOM_ID_icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg>
 					</a></li>
-					<li><a href="//www.youtube.com/user/EmbryRiddleUniv" aria-label="YouTube">
+					<li><a href="//ce.bergen.edu" aria-label="YouTube">
 						<svg class="RANDOM_ID_icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M549.7 124.1c-6.3-23.7-24.8-42.3-48.3-48.6C458.8 64 288 64 288 64S117.2 64 74.6 75.5c-23.5 6.3-42 24.9-48.3 48.6-11.4 42.9-11.4 132.3-11.4 132.3s0 89.4 11.4 132.3c6.3 23.7 24.8 41.5 48.3 47.8C117.2 448 288 448 288 448s170.8 0 213.4-11.5c23.5-6.3 42-24.2 48.3-47.8 11.4-42.9 11.4-132.3 11.4-132.3s0-89.4-11.4-132.3zm-317.5 213.5V175.2l142.7 81.2-142.7 81.2z"/></svg>
 					</a></li>
-					<li><a href="//www.linkedin.com/edu/school?id=18085" aria-label="LinkedIn">
+					<li><a href="//ce.bergen.edu" aria-label="LinkedIn">
 						<svg class="RANDOM_ID_icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
 					</a></li>
 				</ul>
