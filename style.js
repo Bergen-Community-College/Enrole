@@ -37,7 +37,7 @@ if (typeof jQuery !== 'undefined') {
 
 // Test environment only
 // =====================
-if (location.pathname.startsWith('/testbergen/')) {
+if (location.pathname.startsWith('/testcebergen/')) {
 	// Replace all test links
 	var test_links = document.querySelectorAll('a[data-test-href]');
 	for (var i = test_links.length - 1; i >= 0; i--) {
