@@ -261,11 +261,15 @@ input.searchImg {
 .leftMenu {
 	padding-left: 0;
 }
+
+.leftMenu > ul {
+	margin: 0;
+}
+
 .leftMenu ul li {
 	padding-top: 0;
 	margin-left: 0;
-	margin-top: 0;
-	margin-bottom: 0;
+
 }
 .leftMenu a {
 	text-decoration: none;
