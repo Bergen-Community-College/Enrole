@@ -1,6 +1,7 @@
 (function () {
 	var hiddenNavItems = [
-		'FC89CDF8'
+		'FC89CDF8',
+		'FD88EE78'
 	];
 
 	function applyUtils() {
