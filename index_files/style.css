@@ -949,17 +949,3 @@ img{vertical-align:middle}
   filter: drop-shadow(5px 5px 5px #222);
 
 }
-
-a.imageCard span.cardText {
-	background-color: rgba(101, 44, 143, 0.6);
-	color: white;
-
-}
-
-a.card {
-	text-decoration: none;
-}
-
-span.cardText {
-	font-family: 'Oswald', sans-serif !important;
-}
