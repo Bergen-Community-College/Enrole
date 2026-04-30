@@ -11,6 +11,7 @@ if (isLocal || location.pathname === '/testcebergen/jsp/index.jsp') {
 			<aside id="nav_menu-6" class="widget widget_nav_menu">
 <div class="menu-bergen-ce-clone-container">
 					<ul id="menu-bergen-ce-clone" class="menu">
+						<li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="?categoryId=FC89CDF8">Custom Page</a></li>
 						<li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="https://bergen.edu/ce/bergen-for-business/">Bergen for Business</a></li>
 						<li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="https://bergen.edu/ce/courses-programs/">Courses and Programs</a></li>
 						<li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="https://bergen.edu/ce/general-information-and-policies/">General Information and Policies</a></li>
