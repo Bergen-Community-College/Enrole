@@ -1,20 +1,13 @@
 (function () {
+	var hiddenNavItems = [
+		'FC89CDF8'
+	];
+
 	function applyUtils() {
-		
-		// Remove breadcrumb links whose href ends with FD0CE0A8
-		var breadcrumb = document.querySelector('#breadcrumbTop');
-		if (breadcrumb) {
-			breadcrumb.querySelectorAll('a[href$="FD0CE0A8"]').forEach(function (el) {
-				el.parentNode.removeChild(el);
-			});
-		}
-
-		// Remove nav item for FD0CE0A8
-		var navItem = document.getElementById('navFD0CE0A8');
-		if (navItem) {
-			navItem.parentNode.removeChild(navItem);
-		}
-
+		hiddenNavItems.forEach(function (id) {
+			var el = document.getElementById('nav' + id);
+			if (el) el.parentNode.removeChild(el);
+		});
 	}
 
 	if (document.readyState === 'loading') {
