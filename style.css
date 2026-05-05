@@ -401,8 +401,8 @@ input.searchImg {
 }
 #header_title img {
 	float: none;
-	width: 100%;
-	height: auto;
+	width: auto;
+	height: 70px;
 }
 #cartCount {
 	padding-top: 0;

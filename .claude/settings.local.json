@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(venv/Scripts/python scrape.py)",
+      "Bash(venv/Scripts/python extract_pages.py)",
+      "Bash(python3 -)",
+      "Bash(venv/Scripts/python -)"
+    ]
+  }
+}
