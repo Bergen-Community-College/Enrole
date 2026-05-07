@@ -13,8 +13,9 @@ if (!String.prototype.startsWith) {
 	var isLocal = location.protocol === 'file:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1';
 	var base = isLocal ? './scripts/' : 'https://radayev.github.io/Enrole/scripts/';
 	var scripts = [
-        'nav.js', 
-        'footer.js',
+		'nav.js',
+		// 'topbar.js',
+		'footer.js',
 		'sidebar-menu.js',
 		'category-loader.js',
 		'utils.js'
