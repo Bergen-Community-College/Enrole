@@ -959,6 +959,7 @@ a.imageCard span.cardText {
 
 a.card {
 	text-decoration: none;
+	min-height: 200px;
 }
 
 span.cardText {
