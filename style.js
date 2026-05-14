@@ -21,9 +21,10 @@ if (!String.prototype.startsWith) {
 		// 'utils.js'
 		
 	];
+	var v = Date.now();
 	scripts.forEach(function (src) {
 		var s = document.createElement('script');
-		s.src = base + src;
+		s.src = base + src + '?v=' + v;
 		document.head.appendChild(s);
 	});
 })();
