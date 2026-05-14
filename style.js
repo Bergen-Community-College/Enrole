@@ -11,7 +11,7 @@ if (!String.prototype.startsWith) {
 // Load scripts
 (function () {
 	var isLocal = location.protocol === 'file:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1';
-	var base = isLocal ? './scripts/' : 'https://YOUR_DOMAIN/scripts/';
+	var base = isLocal ? './scripts/' : 'http://104.237.145.33/scripts/';
 	var scripts = [
 		// 'nav.js',
 		// 'topbar.js',
