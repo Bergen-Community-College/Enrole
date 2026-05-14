@@ -17,3 +17,14 @@ jobs:
           script: |
             cd /var/www/Enrole
             git pull origin main
+
+      - name: Purge jsDelivr cache
+        run: |
+          curl -s "https://purge.jsdelivr.net/gh/Bergen-Community-College/Enrole@main/style.css"
+          curl -s "https://purge.jsdelivr.net/gh/Bergen-Community-College/Enrole@main/style2.css"
+          curl -s "https://purge.jsdelivr.net/gh/Bergen-Community-College/Enrole@main/scripts/footer.js"
+          curl -s "https://purge.jsdelivr.net/gh/Bergen-Community-College/Enrole@main/scripts/topbar.js"
+          curl -s "https://purge.jsdelivr.net/gh/Bergen-Community-College/Enrole@main/scripts/sidebar-menu.js"
+          curl -s "https://purge.jsdelivr.net/gh/Bergen-Community-College/Enrole@main/scripts/category-loader.js"
+          curl -s "https://purge.jsdelivr.net/gh/Bergen-Community-College/Enrole@main/scripts/utils.js"
+          curl -s "https://purge.jsdelivr.net/gh/Bergen-Community-College/Enrole@main/style.js"
