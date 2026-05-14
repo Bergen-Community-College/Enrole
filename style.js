@@ -11,7 +11,7 @@ if (!String.prototype.startsWith) {
 // Load scripts
 (function () {
 	var isLocal = location.protocol === 'file:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1';
-	var base = isLocal ? './scripts/' : 'https://radayev.github.io/Enrole/scripts/';
+	var base = isLocal ? './scripts/' : 'https://YOUR_DOMAIN/scripts/';
 	var scripts = [
 		// 'nav.js',
 		// 'topbar.js',
