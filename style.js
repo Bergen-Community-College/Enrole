@@ -11,7 +11,7 @@ if (!String.prototype.startsWith) {
 // Load scripts
 (function () {
 	var isLocal = location.protocol === 'file:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1';
-	var base = isLocal ? './scripts/' : 'https://cdn.jsdelivr.net/gh/Bergen-Community-College/Enrole@main/scripts/';
+	var base = isLocal ? './scripts/' : 'https://cdn.jsdelivr.net/gh/Bergen-Community-College/Enrole@b85aa28fc584e677ce0628f9ddca7204f2ee460b/scripts/';
 	var scripts = [
 		'nav.js',
 		'topbar.js',
@@ -30,7 +30,7 @@ if (!String.prototype.startsWith) {
 	cssFiles.forEach(function (href) {
 		var l = document.createElement('link');
 		l.rel = 'stylesheet';
-		var cssBase = isLocal ? './' : 'https://cdn.jsdelivr.net/gh/Bergen-Community-College/Enrole@main/';
+		var cssBase = isLocal ? './' : 'https://cdn.jsdelivr.net/gh/Bergen-Community-College/Enrole@b85aa28fc584e677ce0628f9ddca7204f2ee460b/';
 		l.href = cssBase + href + '?v=' + v;
 		document.head.appendChild(l);
 	});
