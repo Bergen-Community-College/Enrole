@@ -237,7 +237,8 @@ a:focus
 #search input.text:hover {
 	border-color: #9e9e9e;
 }
-input.searchImg {
+#search input.searchImg {
+	position: static;
 	cursor: pointer;
 	flex-shrink: 0;
 }

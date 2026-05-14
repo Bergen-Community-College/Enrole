@@ -5,7 +5,8 @@
       "Bash(venv/Scripts/python extract_pages.py)",
       "Bash(python3 -)",
       "Bash(venv/Scripts/python -)",
-      "Bash(git remote *)"
+      "Bash(git remote *)",
+      "WebFetch(domain:www.enrole.com)"
     ]
   }
 }
