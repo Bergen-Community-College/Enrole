@@ -155,7 +155,7 @@ a:focus
 	font-size: 125%;
 }
 #header table, #wholeContent, #footer {
-	max-width: 1264px;
+	max-width: 1600px;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -501,7 +501,7 @@ a:focus
 }
 #bulletin {
 	background-color: transparent;
-	max-width: 1264px;
+	max-width: 1600px;
 	box-sizing: border-box;
 	padding-left: 0;
 	padding-right: 0;
@@ -986,9 +986,15 @@ a.imageCard span.cardText {
 
 a.card {
 	text-decoration: none;
-	min-height: 200px;
+	height: auto !important;
+	aspect-ratio: unset !important;
 	border: none !important;
 	border-top: none !important;
+}
+a.card img {
+	height: auto !important;
+	width: 100%;
+	object-fit: unset !important;
 }
 
 span.cardText {

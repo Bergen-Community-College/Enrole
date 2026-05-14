@@ -19,7 +19,7 @@
 
 	var tag = document.getElementById('bergen-wrapper-script') || document.createElement('div'),
 		footer_placement  = tag.getAttribute('footer-placement'),
-		container_width   = tag.getAttribute('container-width')   || '1140px',
+		container_width   = tag.getAttribute('container-width')   || '1600px',
 		container_padding = tag.getAttribute('container-padding') || '30px',
 		separator         = tag.getAttribute('separator')      || '|';
 
