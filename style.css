@@ -969,14 +969,17 @@ img{vertical-align:middle}
 }
 
 a.imageCard span.cardText {
-	background-color: rgba(101, 44, 143, 0.6);
+	background-color: rgba(40, 40, 40, 0.85);
 	color: white;
+	border-top: none !important;
 
 }
 
 a.card {
 	text-decoration: none;
 	min-height: 200px;
+	border: none !important;
+	border-top: none !important;
 }
 
 span.cardText {
