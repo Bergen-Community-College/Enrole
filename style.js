@@ -13,12 +13,12 @@ if (!String.prototype.startsWith) {
 	var isLocal = location.protocol === 'file:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1';
 	var base = isLocal ? './scripts/' : 'https://cdn.jsdelivr.net/gh/Bergen-Community-College/Enrole@main/scripts/';
 	var scripts = [
-		// 'nav.js',
-		// 'topbar.js',
+		'nav.js',
+		'topbar.js',
 		'footer.js',
-		// 'sidebar-menu.js',
-		// 'category-loader.js',
-		// 'utils.js'
+		'sidebar-menu.js',
+		'category-loader.js',
+		'utils.js'
 
 	];
 	var cssFiles = [
