@@ -10,7 +10,12 @@
 
 (function () {
 
-	if (document.querySelector('#custom_footer_footer')) return;
+	console.log('[footer.js] script loaded');
+
+	if (document.querySelector('#custom_footer_footer')) {
+		console.log('[footer.js] already injected, skipping');
+		return;
+	}
 
 	var tag = document.getElementById('bergen-wrapper-script') || document.createElement('div'),
 		footer_placement  = tag.getAttribute('footer-placement'),
@@ -183,6 +188,8 @@
 
 	footer_host.appendChild(footer_div);
 
+	console.log('[footer.js] readyState:', document.readyState);
+
 	if (document.readyState === 'loading') {
 		document.addEventListener('DOMContentLoaded', inject);
 	} else {
@@ -190,14 +197,17 @@
 	}
 
 	function inject() {
+		console.log('[footer.js] inject() called, footer_placement:', footer_placement);
 		if (!footer_placement) {
 			document.body.appendChild(footer_host);
+			console.log('[footer.js] appended to body');
 			return;
 		}
 		var parts = footer_placement.split(' ');
 		var loc   = parts[parts.length - 1];
 		var pos   = parts.length > 1 ? parts[0] : 'after';
 		var el    = document.getElementById(loc);
+		console.log('[footer.js] placement target #' + loc + ':', el);
 		if (!el) { document.body.appendChild(footer_host); return; }
 		switch (pos) {
 			case 'before':  el.parentNode.insertBefore(footer_host, el); break;
@@ -205,6 +215,7 @@
 			case 'append':  el.appendChild(footer_host); break;
 			default:        el.parentNode.insertBefore(footer_host, el.nextSibling);
 		}
+		console.log('[footer.js] injected with position "' + pos + '" relative to #' + loc);
 	}
 
 })();
