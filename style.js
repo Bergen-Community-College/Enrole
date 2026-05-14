@@ -21,7 +21,18 @@ if (!String.prototype.startsWith) {
 		// 'utils.js'
 
 	];
+	var cssFiles = [
+		'style.css',
+		// 'style2.css'
+	];
+
 	var v = Date.now();
+	cssFiles.forEach(function (href) {
+		var l = document.createElement('link');
+		l.rel = 'stylesheet';
+		l.href = base.replace('scripts/', '') + href + '?v=' + v;
+		document.head.appendChild(l);
+	});
 	scripts.forEach(function (src) {
 		var s = document.createElement('script');
 		s.src = base + src + '?v=' + v;
