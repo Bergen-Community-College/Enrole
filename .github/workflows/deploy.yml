@@ -6,15 +6,28 @@ on:
 
 jobs:
   deploy:
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
-      - name: Purge jsDelivr cache
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Pin jsDelivr SHA
         run: |
-          curl -s "https://purge.jsdelivr.net/gh/Bergen-Community-College/Enrole@main/style.css"
-          curl -s "https://purge.jsdelivr.net/gh/Bergen-Community-College/Enrole@main/style2.css"
-          curl -s "https://purge.jsdelivr.net/gh/Bergen-Community-College/Enrole@main/scripts/footer.js"
-          curl -s "https://purge.jsdelivr.net/gh/Bergen-Community-College/Enrole@main/scripts/topbar.js"
-          curl -s "https://purge.jsdelivr.net/gh/Bergen-Community-College/Enrole@main/scripts/sidebar-menu.js"
-          curl -s "https://purge.jsdelivr.net/gh/Bergen-Community-College/Enrole@main/scripts/category-loader.js"
-          curl -s "https://purge.jsdelivr.net/gh/Bergen-Community-College/Enrole@main/scripts/utils.js"
-          curl -s "https://purge.jsdelivr.net/gh/Bergen-Community-College/Enrole@main/style.js"
+          SHA=${{ github.sha }}
+          sed -i "s|Bergen-Community-College/Enrole@[^/]*/|Bergen-Community-College/Enrole@${SHA}/|g" style.js
+          sed -i "s|Bergen-Community-College/Enrole@[^/]*/|Bergen-Community-College/Enrole@${SHA}/|g" scripts/category-loader.js
+
+      - name: Commit pinned SHA
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add style.js scripts/category-loader.js
+          git diff --staged --quiet || git commit -m "[skip ci] pin jsdelivr to ${{ github.sha }}"
+          git push
+
+      - name: Purge style.js from jsDelivr
+        run: curl -s "https://purge.jsdelivr.net/gh/Bergen-Community-College/Enrole@main/style.js"
