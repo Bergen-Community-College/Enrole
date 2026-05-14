@@ -19,6 +19,7 @@ if (!String.prototype.startsWith) {
 		// 'sidebar-menu.js',
 		// 'category-loader.js',
 		// 'utils.js'
+		
 	];
 	scripts.forEach(function (src) {
 		var s = document.createElement('script');
