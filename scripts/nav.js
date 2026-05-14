@@ -3,9 +3,6 @@
 		document.querySelector('#header_title a').setAttribute('href', 'https://ce.bergen.edu');
 
 		var breadcrumbs = document.getElementById('breadcrumbTop');
-		var search = document.getElementById('search');
-		var popularContainer = document.getElementById('popularContainer');
-		popularContainer.insertBefore(search, popularContainer.children[0]);
 		var topBar = document.getElementById('topBar');
 		breadcrumbs.className = '';
 		topBar.className = 'desktop-only';
