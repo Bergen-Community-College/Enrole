@@ -14,7 +14,6 @@ if (!String.prototype.startsWith) {
 
 	var scripts = [
 		'nav.js',
-		'topbar.js',
 		'footer.js',
 		'sidebar-menu.js',
 		'category-loader.js',
