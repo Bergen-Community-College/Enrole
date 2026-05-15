@@ -3,14 +3,9 @@
 		document.querySelector('#header_title a').setAttribute('href', 'https://ce.bergen.edu');
 
 		var breadcrumbs = document.getElementById('breadcrumbTop');
-		var topBar = document.getElementById('topBar');
 		breadcrumbs.className = '';
-		topBar.className = 'desktop-only';
-
 		if (breadcrumbs.children.length > 1) {
 			breadcrumbs.style.visibility = 'visible';
-		} else {
-			topBar.remove();
 		}
 
 		if (typeof jQuery !== 'undefined') {
