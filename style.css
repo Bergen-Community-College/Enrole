@@ -470,8 +470,8 @@ a:focus
 	padding: 7px 10px;
 	font-family: inherit;
 	border-radius: 2px;
-	/* color: #fff; */
-	/* background-color: #4c5669; */
+	color: #000;
+	background-color: #fff;
 }
 #login input.text::placeholder {
 	color: #545454;
