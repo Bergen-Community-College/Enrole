@@ -75,6 +75,7 @@
 
 	function init() {
 		console.log('[register.js] init() called');
+
 		var form = document.querySelector('form[action*="form_addAttendee"]');
 		console.log('[register.js] form found:', form);
 		if (!form) {
@@ -82,8 +83,18 @@
 			return;
 		}
 
-		console.log('[register.js] cartOption:', cartOption);
-		console.log('[register.js] formTable:', formTable);
+		// The platform puts <form> inside a table row, so the browser extracts it via
+		// foster parenting — the form element ends up as a sibling of the table, not
+		// its parent. Find the table and cartOption independently of the form element.
+		var firstRow = document.getElementById('rowpersonType');
+		var formTable = firstRow ? firstRow.closest('table') : null;
+		var cartOption = document.querySelector('.cartOption');
+		console.log('[register.js] formTable:', formTable, '| cartOption:', cartOption);
+
+		if (!formTable) {
+			console.warn('[register.js] could not find form table via #rowpersonType');
+			return;
+		}
 
 		// The workshop section has two anonymous <tr>s before the company field rows:
 		// one with a note div and one with the skipCompany checkbox.
@@ -97,9 +108,9 @@
 			console.log('[register.js] workshopNote row:', noteRow, '| workshopHeader row:', headerRow);
 		}
 
-		var currentStep = 0;
-		var cartOption = form.querySelector('.cartOption');
 		if (cartOption) cartOption.style.display = 'none';
+
+		var currentStep = 0;
 
 		var indicator = document.createElement('div');
 		indicator.id = 'cf-wizard-steps';
@@ -130,16 +141,11 @@
 		nav.appendChild(nextBtn);
 		nav.appendChild(submitBtn);
 
-		var formTable = form.querySelector('table');
-		if (formTable) {
-			form.insertBefore(indicator, formTable);
-			form.insertBefore(errorBox, formTable);
-		}
-		if (formTable) {
-			formTable.insertAdjacentElement('afterend', nav);
-		} else {
-			form.appendChild(nav);
-		}
+		// Insert indicator and error box before the table, nav after it.
+		// Use formTable.parentNode since form is a sibling, not the parent.
+		formTable.parentNode.insertBefore(indicator, formTable);
+		formTable.parentNode.insertBefore(errorBox, formTable);
+		formTable.insertAdjacentElement('afterend', nav);
 
 		// A row is platform-hidden when the platform toggled class="hidden" on it.
 		// We must not override this with our own inline style on the active step,
@@ -209,7 +215,7 @@
 		function clearErrors() {
 			errorBox.innerHTML = '';
 			errorBox.style.display = 'none';
-			form.querySelectorAll('.cf-wizard-field-error').forEach(function (el) {
+			document.querySelectorAll('.cf-wizard-field-error').forEach(function (el) {
 				el.classList.remove('cf-wizard-field-error');
 			});
 		}
