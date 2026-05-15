@@ -6,7 +6,8 @@
       "Bash(python3 -)",
       "Bash(venv/Scripts/python -)",
       "Bash(git remote *)",
-      "WebFetch(domain:www.enrole.com)"
+      "WebFetch(domain:www.enrole.com)",
+      "Bash(curl -sk 'https://www.enrole.com:8443/testcebergen/jsp/addAttendee.jsp?source=register')"
     ]
   }
 }

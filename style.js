@@ -8,35 +8,29 @@ if (!String.prototype.startsWith) {
 	});
 }
 
-// Load scripts
+// Resolve the latest commit SHA, then load loader.js at that SHA.
+// This file itself never needs to change — all script/CSS management lives in loader.js.
 (function () {
 	var isLocal = location.protocol === 'file:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1';
-
-	var scripts = [
-		'nav.js',
-		'footer.js',
-		'sidebar-menu.js',
-		'category-loader.js',
-		'utils.js'
-	];
-
-	var cssFiles = [
-		'style.css',
-		// 'style2.css'
-	];
-
-	if (isLocal) {
-		loadAll('./scripts/', './');
-		return;
-	}
-
+	var CDN = 'https://cdn.jsdelivr.net/gh/Bergen-Community-College/Enrole@';
 	var CACHE_KEY = 'cf_jsdelivr_sha';
 	var CACHE_TTL = 5 * 60 * 1000;
+
+	function loadLoader(sha) {
+		var s = document.createElement('script');
+		s.src = isLocal ? './scripts/loader.js' : CDN + sha + '/scripts/loader.js';
+		document.head.appendChild(s);
+	}
+
+	if (isLocal) {
+		loadLoader();
+		return;
+	}
 
 	try {
 		var cached = JSON.parse(localStorage.getItem(CACHE_KEY));
 		if (cached && (Date.now() - cached.ts) < CACHE_TTL) {
-			loadAll(cached.sha);
+			loadLoader(cached.sha);
 			return;
 		}
 	} catch (e) {}
@@ -46,24 +40,15 @@ if (!String.prototype.startsWith) {
 		.then(function (data) {
 			var sha = data.object.sha.slice(0, 7);
 			try { localStorage.setItem(CACHE_KEY, JSON.stringify({ sha: sha, ts: Date.now() })); } catch (e) {}
-			loadAll(sha);
+			loadLoader(sha);
 		})
 		.catch(function () {
-			loadAll('main');
+			// Fall back to stale cache, or 'main' as last resort
+			var fallback = 'main';
+			try {
+				var stale = JSON.parse(localStorage.getItem(CACHE_KEY));
+				if (stale && stale.sha) fallback = stale.sha;
+			} catch (e) {}
+			loadLoader(fallback);
 		});
-
-	function loadAll(sha) {
-		var base = 'https://cdn.jsdelivr.net/gh/Bergen-Community-College/Enrole@' + sha + '/';
-		cssFiles.forEach(function (href) {
-			var l = document.createElement('link');
-			l.rel = 'stylesheet';
-			l.href = base + href;
-			document.head.appendChild(l);
-		});
-		scripts.forEach(function (src) {
-			var s = document.createElement('script');
-			s.src = base + 'scripts/' + src;
-			document.head.appendChild(s);
-		});
-	}
 })();

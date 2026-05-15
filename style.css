@@ -205,7 +205,7 @@ a:focus
 #search form {
 	display: flex;
 	align-items: center;
-	height: 75px;
+	height: 50px;
 	background: #fff;
 	border: 2px solid #cacaca;
 	border-radius: 100px;
@@ -1008,6 +1008,99 @@ a.card img {
 span.cardText {
 	font-family: 'Oswald', sans-serif !important;
 	font-weight: 400 !important;
+}
+
+/* ── Registration Wizard ──────────────────────────────────────────────────── */
+#cf-wizard-steps {
+	display: flex;
+	align-items: flex-start;
+	padding: 20px 0 28px;
+	overflow-x: auto;
+}
+.cf-wizard-step-item {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 6px;
+	flex-shrink: 0;
+}
+.cf-wizard-step-circle {
+	width: 36px;
+	height: 36px;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: 700;
+	font-size: 0.9rem;
+	background: #e0e0e0;
+	color: #888;
+	border: 2px solid #ccc;
+	transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+.cf-wizard-step-item.active .cf-wizard-step-circle {
+	background: #3E0C70;
+	color: #fff;
+	border-color: #3E0C70;
+}
+.cf-wizard-step-item.done .cf-wizard-step-circle {
+	background: #6b3fa0;
+	color: #fff;
+	border-color: #6b3fa0;
+}
+.cf-wizard-step-label {
+	font-size: 0.68rem;
+	color: #aaa;
+	white-space: nowrap;
+	text-align: center;
+}
+.cf-wizard-step-item.active .cf-wizard-step-label,
+.cf-wizard-step-item.done .cf-wizard-step-label {
+	color: #3E0C70;
+	font-weight: 700;
+}
+.cf-wizard-step-line {
+	flex: 1;
+	min-width: 16px;
+	height: 2px;
+	background: #ddd;
+	margin-top: 17px; /* centers line with the 36px circle */
+}
+.cf-wizard-step-line.done { background: #6b3fa0; }
+#cf-wizard-errors {
+	background: #fff3f3;
+	border-left: 4px solid #c00;
+	padding: 10px 16px;
+	margin-bottom: 12px;
+	border-radius: 0 4px 4px 0;
+	color: #c00;
+	font-size: 0.875rem;
+}
+#cf-wizard-errors ul { margin: 0; padding-left: 1.2em; }
+#cf-wizard-nav {
+	display: flex;
+	gap: 10px;
+	padding: 16px 0;
+}
+.cf-wizard-btn {
+	padding: 12px 28px;
+	border: none;
+	border-radius: 50px;
+	font-size: inherit;
+	font-family: inherit;
+	font-weight: 700;
+	cursor: pointer;
+	transition: background 0.2s;
+}
+.cf-wizard-back { background: #e0e0e0; color: #333; }
+.cf-wizard-back:hover { background: #cbcbcb; }
+.cf-wizard-next,
+.cf-wizard-submit { background: #3E0C70; color: #fff; }
+.cf-wizard-next:hover,
+.cf-wizard-submit:hover { background: #5a1a9a; }
+.cf-wizard-field-error {
+	border-color: #c00 !important;
+	box-shadow: 0 0 0 2px #ffc0c0;
 }
 
 /* ── Custom Footer ─────────────────────────────────────────────────────────── */
