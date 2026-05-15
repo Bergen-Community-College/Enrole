@@ -135,8 +135,8 @@
 			form.insertBefore(indicator, formTable);
 			form.insertBefore(errorBox, formTable);
 		}
-		if (cartOption) {
-			form.insertBefore(nav, cartOption);
+		if (formTable) {
+			formTable.insertAdjacentElement('afterend', nav);
 		} else {
 			form.appendChild(nav);
 		}
