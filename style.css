@@ -1118,7 +1118,7 @@ span.cardText {
 	padding: 0 var(--cf-container-padding, 30px);
 	margin: auto;
 }
-#custom_footer_links { background-color: #660099; color: #a5a5a5; padding: 30px 0; }
+#custom_footer_links { background-color: #3E0C70; color: #a5a5a5; padding: 30px 0; }
 #custom_footer_columns { display: flex; gap: 0; align-items: flex-start; }
 .custom_footer_col { flex: 1; padding: 0 20px; }
 .custom_footer_col h3 {
@@ -1127,7 +1127,7 @@ span.cardText {
 }
 .custom_footer_col address { font-style: normal; color: #a5a5a5; margin-bottom: 4px; }
 .custom_footer_col .cf_phone { color: #a5a5a5; margin: 4px 0; }
-.custom_footer_divider { width: 2px; background: #27519f; align-self: stretch; flex: 0 0 2px; margin: 0 10px; }
+.custom_footer_divider { width: 2px; background: #545454; align-self: stretch; flex: 0 0 2px; margin: 0 10px; }
 #custom_footer_links ul { list-style: none; margin: 0; padding: 0; }
 #custom_footer_links li { padding: 5px 0; }
 @media (max-width: 699px) {

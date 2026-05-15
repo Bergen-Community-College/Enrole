@@ -50,6 +50,7 @@
 		{
 			title: 'Workshop',
 			rows: [
+				'rowWorkshopNote',
 				'rowWorkshopHeader',
 				'rowUDTESTCEBERGENJOBTITLE',
 				'rowUDTESTCEBERGENWAGENJBIA',
@@ -71,11 +72,14 @@
 		var form = document.querySelector('form[action*="form_addAttendee"]');
 		if (!form) return;
 
-		// Tag the workshop header row (the <tr> wrapping skipCompany + inner table)
+		// The workshop section has two anonymous <tr>s before the company field rows:
+		// one with a note div and one with the skipCompany checkbox.
 		var skipCompanyEl = document.getElementById('skipCompany');
 		if (skipCompanyEl) {
 			var headerRow = skipCompanyEl.closest('tr');
 			if (headerRow && !headerRow.id) headerRow.id = 'rowWorkshopHeader';
+			var noteRow = headerRow && headerRow.previousElementSibling;
+			if (noteRow && !noteRow.id) noteRow.id = 'rowWorkshopNote';
 		}
 
 		var currentStep = 0;
