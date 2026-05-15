@@ -1,5 +1,10 @@
 (function () {
-	if (location.pathname.indexOf('addAttendee.jsp') === -1) return;
+	console.log('[register.js] loaded, pathname:', location.pathname);
+
+	if (location.pathname.indexOf('addAttendee.jsp') === -1) {
+		console.log('[register.js] not on addAttendee.jsp, exiting');
+		return;
+	}
 
 	var STEPS = [
 		{
@@ -69,17 +74,27 @@
 	];
 
 	function init() {
+		console.log('[register.js] init() called');
 		var form = document.querySelector('form[action*="form_addAttendee"]');
-		if (!form) return;
+		console.log('[register.js] form found:', form);
+		if (!form) {
+			console.warn('[register.js] form not found — selector: form[action*="form_addAttendee"]');
+			return;
+		}
+
+		console.log('[register.js] cartOption:', cartOption);
+		console.log('[register.js] formTable:', formTable);
 
 		// The workshop section has two anonymous <tr>s before the company field rows:
 		// one with a note div and one with the skipCompany checkbox.
 		var skipCompanyEl = document.getElementById('skipCompany');
+		console.log('[register.js] skipCompany el:', skipCompanyEl);
 		if (skipCompanyEl) {
 			var headerRow = skipCompanyEl.closest('tr');
 			if (headerRow && !headerRow.id) headerRow.id = 'rowWorkshopHeader';
 			var noteRow = headerRow && headerRow.previousElementSibling;
 			if (noteRow && !noteRow.id) noteRow.id = 'rowWorkshopNote';
+			console.log('[register.js] workshopNote row:', noteRow, '| workshopHeader row:', headerRow);
 		}
 
 		var currentStep = 0;
@@ -274,6 +289,7 @@
 		showStep(0);
 	}
 
+	console.log('[register.js] readyState:', document.readyState);
 	if (document.readyState === 'loading') {
 		document.addEventListener('DOMContentLoaded', init);
 	} else {
