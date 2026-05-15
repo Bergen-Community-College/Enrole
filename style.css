@@ -164,6 +164,7 @@ a:focus
 	width: 100%;
 }
 #skiptocontent a {
+	display:none !important;
     position: absolute;
     width: 1px;
     height: 1px;
@@ -412,11 +413,11 @@ a:focus
 .cf_header_subtitle {
 	display: block;
 	color: #fff;
-	font-size: 0.65rem;
+	font-size: 1rem;
 	font-weight: 700;
 	letter-spacing: 0.08em;
 	margin-top: 4px;
-	font-family: 'Oswald', sans-serif !important;
+	font-family: "News Cycle", sans-serif !important;
 }
 #header_title img {
 	float: none;
@@ -453,9 +454,6 @@ a:focus
 	text-decoration: none;
 }
 
-.cf_header_subtitle {
-	font-family: "News Cycle", sans-serif !important;
-}
 
 #login {
 	/*display: none;*/
@@ -472,11 +470,11 @@ a:focus
 	padding: 7px 10px;
 	font-family: inherit;
 	border-radius: 2px;
-	color: #fff;
-	background-color: #4c5669;
+	/* color: #fff; */
+	/* background-color: #4c5669; */
 }
 #login input.text::placeholder {
-	color: #CFCFCF;
+	color: #545454;
 }
 #login input.submit {
 	color: #fff;
@@ -984,7 +982,7 @@ img{vertical-align:middle}
 }
 
 a.imageCard span.cardText {
-	background-color: rgba(40, 40, 40, 0.85);
+	background-color: rgba(84, 84, 84, 0.72);
 	color: white;
 	border-top: none !important;
 
@@ -998,7 +996,7 @@ a.card {
 	border-top: none !important;
 }
 a.card:hover {
-	margin: 0px;
+	margin: 5px;
 }
 
 a.card img {
