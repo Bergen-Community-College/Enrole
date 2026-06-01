@@ -1000,10 +1000,12 @@ a.imageCard:hover {
 }
 
 a.card img {
+	text-decoration: none;
 	height: auto !important;
 	width: 100%;
 	object-fit: unset !important;
 }
+
 
 span.cardText {
 	font-family: 'Oswald', sans-serif !important;
