@@ -1000,11 +1000,25 @@ a.imageCard:hover {
 	margin: 5px;
 }
 
+a.card {
+	aspect-ratio: 5/1 !important;
+	align-items: start !important;
+	padding-left: 2 em !important;
+}
+
 a.card img {
 	text-decoration: none;
 	height: auto !important;
 	width: 100%;
 	object-fit: unset !important;
+}
+
+div.cardContainer {
+	display: flex;
+	justify-content: start;
+	/* flex-direction: column; */
+	/* justify-content: flex-end; */
+	/* height: 100%; */
 }
 
 
