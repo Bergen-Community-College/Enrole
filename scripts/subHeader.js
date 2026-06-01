@@ -8,7 +8,7 @@
 		if (!match) {
 			label = 'Courses and Programs';
 		} else {
-			var navItem = document.querySelector('li[navID="' + match[1] + '"] a');
+			var navItem = document.querySelector('#nav' + match[1] + ' a');
 			if (!navItem) return;
 			var categoryName = navItem.textContent.trim();
 
