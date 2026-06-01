@@ -1014,11 +1014,27 @@ a.card img {
 }
 
 div.cardContainer {
-	display: flex;
-	justify-content: start;
-	/* flex-direction: column; */
-	/* justify-content: flex-end; */
-	/* height: 100%; */
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 16px;
+}
+
+a.card, a.imageCard {
+	width: 100%;
+	box-sizing: border-box;
+	margin: 0;
+}
+
+@media (min-width: 768px) {
+	div.cardContainer {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+@media (min-width: 990px) {
+	div.cardContainer {
+		grid-template-columns: repeat(3, 1fr);
+	}
 }
 
 
