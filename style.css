@@ -988,14 +988,14 @@ a.imageCard span.cardText {
 
 }
 
-a.card {
+a.imageCard {
 	text-decoration: none;
 	height: auto !important;
 	aspect-ratio: 5/3 !important;
 	border: none !important;
-	border-top: none !important;
 }
-a.card:hover {
+
+a.imageCard:hover {
 	margin: 5px;
 }
 
