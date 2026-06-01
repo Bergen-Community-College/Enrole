@@ -4,12 +4,12 @@
 	var isLocal = location.protocol === 'file:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1';
 
 	var scripts = [
-		// 'nav.js',
-		// 'footer.js',
-		// 'sidebar-menu.js',
-		// 'category-loader.js',
-		// 'utils.js',
-		// 'register.js'
+		'nav.js',
+		'footer.js',
+		'sidebar-menu.js',
+		'category-loader.js',
+		'utils.js',
+		'register.js'
 	];
 
 	var cssFiles = [
