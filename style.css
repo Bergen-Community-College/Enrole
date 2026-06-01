@@ -996,14 +996,16 @@ a.imageCard {
 	border: none !important;
 }
 
-a.imageCard:hover {
-	margin: 5px;
+
+a.card:hover {
+	margin: 0px;
 }
 
 a.card:not(.imageCard) {
 	aspect-ratio: 5/1;
 	align-items: start !important;
 	padding-left: 2em !important;
+	text-decoration: none;
 }
 
 a.card img {
