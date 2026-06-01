@@ -6,8 +6,8 @@
 	var scripts = [
 		'nav.js',
 		'footer.js',
-		'sidebar-menu.js',
-		'category-loader.js',
+		// 'sidebar-menu.js',
+		// 'category-loader.js',
 		'utils.js',
 		'register.js',
 		'subHeader.js'

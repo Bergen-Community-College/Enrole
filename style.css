@@ -418,6 +418,7 @@ a:focus
 	letter-spacing: 0.08em;
 	margin-top: 4px;
 	font-family: "News Cycle", sans-serif !important;
+	inline-size: max-content !important;
 }
 #header_title img {
 	float: none;
