@@ -1,4 +1,19 @@
 (function () {
+	var COURSE_SUFFIXES = [
+		'Courses', 
+		'Programs', 
+		'Certificates', 
+		'Degrees'
+	];
+
+	function hasSuffix(name) {
+		var lower = name.toLowerCase();
+		for (var i = 0; i < COURSE_SUFFIXES.length; i++) {
+			if (lower.endsWith(COURSE_SUFFIXES[i].toLowerCase())) return true;
+		}
+		return false;
+	}
+
 	function init() {
 		if (!location.pathname.endsWith('index.jsp')) return;
 
@@ -11,12 +26,8 @@
 			var navItem = document.querySelector('#nav' + match[1] + ' a');
 			if (!navItem) return;
 			var categoryName = navItem.textContent.trim();
-			var suffix = (document.querySelector('h1.subHeader') || {}).textContent || 'Courses';
-			suffix = suffix.trim();
 
-			label = categoryName.toLowerCase().endsWith(suffix.toLowerCase())
-				? categoryName
-				: categoryName + ' ' + suffix;
+			label = hasSuffix(categoryName) ? categoryName : categoryName + ' Courses';
 		}
 
 		var subHeader = document.querySelector('h1.subHeader');
