@@ -1141,27 +1141,34 @@ span.cardText {
 /* ── Custom Footer ─────────────────────────────────────────────────────────── */
 #custom_footer_footer { line-height: 1.35; font-size: 0.8rem; }
 #custom_footer_footer a {
-	text-decoration: none; font-weight: 700; color: #e8e8e8; display: inline-block;
+	text-decoration: none; font-weight: 700; color: #004AAD; display: inline-block;
 	text-decoration-line: underline; text-decoration-color: transparent;
 	text-underline-offset: 0.2rem; text-decoration-thickness: 2px;
 }
 #custom_footer_footer a:hover, #custom_footer_footer a:focus-visible {
-	color: #ffcb09; text-decoration-line: underline; text-decoration-color: #0062bd;
+	color: #003b88; 
+	text-decoration-line: underline; 
+	text-decoration-color: #0062bd;
 }
 .custom_footer_container {
 	max-width: var(--cf-container-width, 1600px);
 	padding: 0 var(--cf-container-padding, 30px);
 	margin: auto;
 }
-#custom_footer_links { background-color: #3E0C70; color: #a5a5a5; padding: 30px 0; }
+#custom_footer_links { 
+	background-color: #ffffff; 
+	color: #545454; 
+	padding: 30px 0; 
+	border-top: solid 1px #545454;
+}
 #custom_footer_columns { display: flex; gap: 0; align-items: flex-start; }
 .custom_footer_col { flex: 1; padding: 0 20px; }
 .custom_footer_col h3 {
-	color: #fff; font-size: 0.85rem; font-weight: 700; margin: 0 0 10px 0;
+	color: #545454; font-size: 0.85rem; font-weight: 700; margin: 0 0 10px 0;
 	text-transform: uppercase; letter-spacing: 0.05em;
 }
-.custom_footer_col address { font-style: normal; color: #a5a5a5; margin-bottom: 4px; }
-.custom_footer_col .cf_phone { color: #a5a5a5; margin: 4px 0; }
+.custom_footer_col address { font-style: normal; color: #545454; margin-bottom: 4px; }
+.custom_footer_col .cf_phone { color: #545454; margin: 4px 0; }
 .custom_footer_divider { width: 2px; background: #545454; align-self: stretch; flex: 0 0 2px; margin: 0 10px; }
 #custom_footer_links ul { list-style: none; margin: 0; padding: 0; }
 #custom_footer_links li { padding: 5px 0; }
