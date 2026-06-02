@@ -11,9 +11,12 @@
 			var navItem = document.querySelector('#nav' + match[1] + ' a');
 			if (!navItem) return;
 			var categoryName = navItem.textContent.trim();
+			var suffix = (document.querySelector('h1.subHeader') || {}).textContent || 'Courses';
+			suffix = suffix.trim();
 
-			var existing = document.querySelector('h1.subHeader');
-			label = categoryName + ' ' + (existing ? existing.textContent.trim() : 'Courses');
+			label = categoryName.toLowerCase().endsWith(suffix.toLowerCase())
+				? categoryName
+				: categoryName + ' ' + suffix;
 		}
 
 		var subHeader = document.querySelector('h1.subHeader');
