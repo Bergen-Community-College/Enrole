@@ -1155,11 +1155,17 @@ span.cardText {
 	padding: 0 var(--cf-container-padding, 30px);
 	margin: auto;
 }
-#custom_footer_links { 
-	background-color: #ffffff; 
-	color: #545454; 
-	padding: 30px 0; 
+#custom_footer_links {
+	background-color: #ffffff;
+	color: #545454;
+	padding: 30px 0;
 	border-top: solid 1px #545454;
+}
+.cf_footer_brand {
+	color: #545454;
+	text-align: left;
+	font-size: 1.4rem;
+	margin: 0 0 20px;
 }
 #custom_footer_columns { 
 	display: flex; 
@@ -1170,14 +1176,7 @@ span.cardText {
 	flex: 1; 
 	padding: 0 20px; 
 }
-.custom_footer_col h1 {
-	color: #545454; 
-	font-size: 1.5rem;
-	font-weight: 700; 
-	margin: 0 0 10px 0;
-	text-transform: uppercase; 
-	letter-spacing: 0.05em;
-}
+
 .custom_footer_col h3 {
 	color: #545454; 
 	font-size: 0.85rem; 

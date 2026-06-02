@@ -85,13 +85,16 @@ var footer_div = document.createElement('div');
 	footer_div.innerHTML =
 		'<footer id="custom_footer_footer" aria-label="Bergen Community College footer">' +
 		'  <div id="custom_footer_links">' +
-		'    <div id="custom_footer_columns" class="custom_footer_container">' +
-		      campusCol(campuses[0]) +
-		      campusCol(campuses[1]) +
-		      campusCol(campuses[2]) +
-		'      <div class="custom_footer_divider"></div>' +
-		      linkCol('Resources', resources) +
-		      linkCol('Staff Links', staff_links) +
+		'    <div class="custom_footer_container">' +
+		'      <h1 class="cf_footer_brand">Bergen Community College</h1>' +
+		'      <div id="custom_footer_columns">' +
+		          campusCol(campuses[0]) +
+		          campusCol(campuses[1]) +
+		          campusCol(campuses[2]) +
+		'        <div class="custom_footer_divider"></div>' +
+		          linkCol('Resources', resources) +
+		          linkCol('Staff Links', staff_links) +
+		'      </div>' +
 		'    </div>' +
 		'  </div>' +
 		'</footer>';
