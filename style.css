@@ -1161,11 +1161,30 @@ span.cardText {
 	padding: 30px 0; 
 	border-top: solid 1px #545454;
 }
-#custom_footer_columns { display: flex; gap: 0; align-items: flex-start; }
-.custom_footer_col { flex: 1; padding: 0 20px; }
+#custom_footer_columns { 
+	display: flex; 
+	gap: 0; 
+	align-items: flex-start; }
+
+.custom_footer_col { 
+	flex: 1; 
+	padding: 0 20px; 
+}
+.custom_footer_col h1 {
+	color: #545454; 
+	font-size: 1.5rem;
+	font-weight: 700; 
+	margin: 0 0 10px 0;
+	text-transform: uppercase; 
+	letter-spacing: 0.05em;
+}
 .custom_footer_col h3 {
-	color: #545454; font-size: 0.85rem; font-weight: 700; margin: 0 0 10px 0;
-	text-transform: uppercase; letter-spacing: 0.05em;
+	color: #545454; 
+	font-size: 0.85rem; 
+	font-weight: 700; 
+	margin: 0 0 10px 0;
+	text-transform: uppercase; 
+	letter-spacing: 0.05em;
 }
 .custom_footer_col address { font-style: normal; color: #545454; margin-bottom: 4px; }
 .custom_footer_col .cf_phone { color: #545454; margin: 4px 0; }
