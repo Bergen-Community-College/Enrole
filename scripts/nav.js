@@ -2,13 +2,14 @@
 	function init() {
 		document.querySelector('#header_title a').setAttribute('href', 'index.jsp');
 
-		var headerTitle = document.getElementById('header_title');
-		if (headerTitle && !headerTitle.querySelector('.cf_header_subtitle')) {
-			var span = document.createElement('span');
-			span.className = 'cf_header_subtitle';
-			span.textContent = 'CONTINUING EDUCATION AND WORKFORCE DEVELOPMENT';
-			headerTitle.appendChild(span);
-		}
+
+		// var headerTitle = document.getElementById('header_title');
+		// if (headerTitle && !headerTitle.querySelector('.cf_header_subtitle')) {
+		// 	var span = document.createElement('span');
+		// 	span.className = 'cf_header_subtitle';
+		// 	span.textContent = 'CONTINUING EDUCATION AND WORKFORCE DEVELOPMENT';
+		// 	headerTitle.appendChild(span);
+		// }
 
 		var breadcrumbs = document.getElementById('breadcrumbTop');
 		breadcrumbs.className = '';
