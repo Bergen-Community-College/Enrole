@@ -586,6 +586,9 @@ a:focus
 	border-bottom: none;
 	/* border-bottom: 0px solid #42C2D5; */
 }
+.subHeader:not(:first-child) {
+	margin-top: 1rem;
+}
 #content .inner {
 	padding-top: 0;
 	padding-right: 0;
