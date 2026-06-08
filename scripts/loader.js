@@ -15,7 +15,10 @@
 		'style.css'
 	];
 
-	var sha = window.cf_jsdelivr_sha || 'main';
+	var ownSrc = document.currentScript ? document.currentScript.src : '';
+	var match = ownSrc.match(/Enrole@([^/]+)\//);
+	var sha = match ? match[1] : (window.cf_jsdelivr_sha || 'main');
+	window.cf_jsdelivr_sha = sha;
 	var base = 'https://cdn.jsdelivr.net/gh/Bergen-Community-College/Enrole@' + sha + '/';
 	loadAll(base + 'scripts/', base);
 
