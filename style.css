@@ -1149,6 +1149,7 @@ span.cardText {
 
 div#testBanner {
 	background-color: #e6e6e6;
+	padding: 0px;
 }
 
 input:focus-visible {
