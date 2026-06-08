@@ -580,9 +580,9 @@ a:focus
 	width: auto;
 	font-weight: 300;
 	font-size: 2rem;
-	margin-top:none;
-	padding-top: none;
-	padding-bottom: none;
+	margin-top: 0px;
+	padding-top: 0px;
+	padding-bottom: 0px;
 	border-bottom: none;
 	/* border-bottom: 0px solid #42C2D5; */
 }
