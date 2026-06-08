@@ -4,19 +4,25 @@
 		'FD88EE78'
 	];
 
+	function fitCardText() {
+		var nodes = document.querySelectorAll('.cardText');
+		for (var i = 0; i < nodes.length; i++) {
+			var el = nodes[i];
+			el.style.fontSize = '';
+			var size = parseFloat(getComputedStyle(el).fontSize);
+			while (el.scrollWidth > el.clientWidth && size > 8) {
+				size -= 0.5;
+				el.style.fontSize = size + 'px';
+			}
+		}
+	}
+
 	function applyUtils() {
 		hiddenNavItems.forEach(function (id) {
 			var el = document.getElementById('nav' + id);
 			if (el) el.parentNode.removeChild(el);
 		});
-
-		var headerTitle = document.getElementById('header_title');
-		if (headerTitle && !headerTitle.querySelector('.cf_header_subtitle')) {
-			var span = document.createElement('span');
-			span.className = 'cf_header_subtitle';
-			span.textContent = 'CONTINUING EDUCATION AND WORKFORCE DEVELOPMENT';
-			headerTitle.appendChild(span);
-		}
+		fitCardText();
 	}
 
 	if (document.readyState === 'loading') {
@@ -24,4 +30,10 @@
 	} else {
 		applyUtils();
 	}
+
+	var resizeTimer;
+	window.addEventListener('resize', function () {
+		clearTimeout(resizeTimer);
+		resizeTimer = setTimeout(fitCardText, 150);
+	});
 })();

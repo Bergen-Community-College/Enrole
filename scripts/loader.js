@@ -1,8 +1,6 @@
 // Script and CSS manifest. Edit this file to add or remove assets —
 // it is always fetched at a pinned SHA so no CDN purge is ever needed.
 (function () {
-	var isLocal = location.protocol === 'file:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1';
-
 	var scripts = [
 		'nav.js',
 		'footer.js',
@@ -17,18 +15,7 @@
 		'style.css'
 	];
 
-	if (isLocal) {
-		loadAll('./scripts/', './');
-		return;
-	}
-
-	// style.js already resolved the SHA and cached it before loading this file
-	var sha = 'main';
-	try {
-		var cached = JSON.parse(localStorage.getItem('cf_jsdelivr_sha'));
-		if (cached && cached.sha) sha = cached.sha;
-	} catch (e) {}
-
+	var sha = window.cf_jsdelivr_sha || 'main';
 	var base = 'https://cdn.jsdelivr.net/gh/Bergen-Community-College/Enrole@' + sha + '/';
 	loadAll(base + 'scripts/', base);
 
