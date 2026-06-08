@@ -277,6 +277,8 @@ a:focus
 /* Both Left Menus */
 .leftMenu {
 	padding-left: 0;
+	padding-top: 0px;   
+    padding-bottom: 15px;
 }
 
 .leftMenu > ul {
@@ -1149,14 +1151,10 @@ div#testBanner {
 	background-color: #e6e6e6;
 }
 
-input:focus-visible{
+input:focus-visible {
 	outline: 3px solid #FF6600;
 }
 
-.leftMenu {
-	padding-top: 0px;   
-    padding-bottom: 15px;
-}
 /* ── Custom Footer ─────────────────────────────────────────────────────────── */
 #custom_footer_footer { line-height: 1.35; font-size: 0.8rem; }
 #custom_footer_footer a {
