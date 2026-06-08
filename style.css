@@ -580,10 +580,11 @@ a:focus
 	width: auto;
 	font-weight: 300;
 	font-size: 2rem;
-	padding-top: 0rem;
-	padding-bottom: 0rem;
-	border-bottom: 0px;
-	border-bottom: 0px solid #42C2D5;
+	margin-top:none;
+	padding-top: none;
+	padding-bottom: none;
+	border-bottom: none;
+	/* border-bottom: 0px solid #42C2D5; */
 }
 #content .inner {
 	padding-top: 0;
