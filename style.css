@@ -526,7 +526,7 @@ a:focus
 	padding-top: 0;
 	padding-bottom: 0;
 	margin-top: 1rem;
-	margin-bottom: 1rem;
+	/* margin-bottom: 1rem; */
 }
 #topBar {
 	display: flex;
@@ -1031,6 +1031,7 @@ a.card, a.imageCard {
 	width: 100%;
 	box-sizing: border-box;
 	margin: 0;
+	border-radius: 0px;
 }
 
 @media (min-width: 768px) {
@@ -1144,6 +1145,18 @@ span.cardText {
 	box-shadow: 0 0 0 2px #ffc0c0;
 }
 
+div#testBanner {
+	background-color: #e6e6e6;
+}
+
+input:focus-visible{
+	outline: 3px solid #FF6600;
+}
+
+.leftMenu {
+	padding-top: 0px;   
+    padding-bottom: 15px;
+}
 /* ── Custom Footer ─────────────────────────────────────────────────────────── */
 #custom_footer_footer { line-height: 1.35; font-size: 0.8rem; }
 #custom_footer_footer a {
