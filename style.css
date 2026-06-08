@@ -485,7 +485,8 @@ a:focus
 #login input.text::placeholder {
 	color: #545454;
 }
-#login input.submit {
+#login input.submit,
+.cf-inline-submit-row input.submit {
 	color: #fff;
 	background-color: #FF6600;
 	border: 0;
@@ -494,7 +495,8 @@ a:focus
 	margin: 5px;
 	padding: 6px 16px;
 }
-#login input.submit:hover {
+#login input.submit:hover,
+.cf-inline-submit-row input.submit:hover {
 	color: #000;
 	background-color: #ffb380;
 }
@@ -681,8 +683,7 @@ label {
 	background-color: #00579d;
 	color: #fff;
 }
-.cartOption input.submit,
-.cf-inline-submit-row input.submit {
+.cartOption input.submit {
 	border: 0;
 	background-color: #ffcb06;
 	color: #1c2b57;
@@ -690,13 +691,11 @@ label {
 	width: auto;
 	text-decoration: underline;
 }
-.cartOption input.submit:hover,
-.cf-inline-submit-row input.submit:hover {
+.cartOption input.submit:hover {
 	color: #fff;
 	text-decoration: none;
 }
-.cartOption > input.submit,
-.cf-inline-submit-row input.submit {
+.cartOption > input.submit {
 	font-size: inherit;
 }
 #cartOption a::after {
