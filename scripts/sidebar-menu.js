@@ -1,10 +1,10 @@
 (function () {
 	var MENU_ITEMS = [
-		{ href: 'index.jsp',                  icon: 'fa-solid fa-book-open',       label: 'Browse Courses' },
-		{ href: 'categoryId=C6B87DC8',        icon: 'fa-solid fa-location-dot',    label: 'Courses by Location' },
-		{ href: 'calendar.jsp',               icon: 'fa-regular fa-calendar-days', label: 'Courses by Calendar' },
-		{ href: 'cart.jsp',                   icon: 'fa-solid fa-cart-shopping',   label: 'Registration Cart' },
-		{ href: 'login.jsp',                  icon: 'fa-solid fa-user',            label: 'Sign in/Create user profile' }
+		{ href: 'index.jsp', exclude: 'categoryId', icon: 'fa-solid fa-book-open',       label: 'Browse Courses' },
+		{ href: 'categoryId=C6B87DC8',               icon: 'fa-solid fa-location-dot',    label: 'Courses by Location' },
+		{ href: 'calendar.jsp',                      icon: 'fa-regular fa-calendar-days', label: 'Courses by Calendar' },
+		{ href: 'cart.jsp',                          icon: 'fa-solid fa-cart-shopping',   label: 'Registration Cart' },
+		{ href: 'login.jsp',                         icon: 'fa-solid fa-user',            label: 'Sign in/Create user profile' }
 	];
 
 	function init() {
@@ -46,8 +46,10 @@
 			var href = a.getAttribute('href') || '';
 			var match = null;
 			for (var j = 0; j < MENU_ITEMS.length; j++) {
-				if (href.indexOf(MENU_ITEMS[j].href) !== -1) {
-					match = MENU_ITEMS[j];
+				var entry = MENU_ITEMS[j];
+				if (href.indexOf(entry.href) !== -1) {
+					if (entry.exclude && href.indexOf(entry.exclude) !== -1) continue;
+					match = entry;
 					break;
 				}
 			}
