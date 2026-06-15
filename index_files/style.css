@@ -287,7 +287,7 @@ input.searchImg {
 }
 /* 2022 update */
 .leftMenu ul li a:hover, .leftMenu ul.Level00 li a:hover, .leftMenu ul.Level01 li a:hover, .leftMenu ul.Level02 li a:hover, .leftMenu ul.Level03 li a:hover {
-	color: #003d6e;
+	color: #333333;
 	background-color: #d9d9d9;
 	text-decoration: none;
 }
