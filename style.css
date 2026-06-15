@@ -343,14 +343,12 @@ a:focus
 	line-height: normal;
 	padding: 11px 15px 11px 30px;
 }
-.leftMenu ul.Level00 li a.active {
-
-}
-.leftMenu ul.Level01 li a.active {
-	background: #bdc6d3;
-}
-.leftMenu ul.Level02 li a.active {
-	background: #dbe1ea;
+.leftMenu ul.Level00 li a.active,
+.leftMenu ul.Level01 li a.active,
+.leftMenu ul.Level02 li a.active,
+.leftMenu ul li a.active {
+	background-color: #660099;
+	color: #fff;
 }
 .leftMenu ul.Level02 li a {
 	padding: 11px 15px 11px 45px;
@@ -1208,7 +1206,6 @@ input:focus-visible {
 
 .leftMenu ul li a i {
 	border: 0;
-
 }
 
 .active {
