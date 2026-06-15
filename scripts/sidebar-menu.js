@@ -110,6 +110,26 @@
     for (var si = 0; si < lisArray.length; si++) {
       targetUl.appendChild(lisArray[si]);
     }
+
+    // Mark current page as active
+    var currentPath = location.pathname;
+    var currentSearch = location.search;
+    var catMatch = currentSearch.match(/categoryId=([^&]+)/);
+    var links = targetUl.querySelectorAll("a");
+    for (var l = 0; l < links.length; l++) {
+      var linkHref = links[l].getAttribute("href") || "";
+      var isMatch = false;
+      if (catMatch) {
+        isMatch = linkHref.indexOf("categoryId=" + catMatch[1]) !== -1;
+      } else {
+        var jsp = currentPath.match(/\/([^/]+\.jsp)$/);
+        if (jsp) isMatch = linkHref.indexOf(jsp[1]) !== -1 && linkHref.indexOf("categoryId") === -1;
+      }
+      if (isMatch) {
+        links[l].classList.add("active");
+        break;
+      }
+    }
   }
 
   if (document.readyState === "loading") {
