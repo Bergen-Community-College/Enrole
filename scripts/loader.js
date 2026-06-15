@@ -4,7 +4,7 @@
 	var scripts = [
 		'nav.js',
 		'footer.js',
-		// 'sidebar-menu.js',
+		'sidebar-menu.js',
 		// 'category-loader.js',
 		'utils.js',
 		//'register.js',
