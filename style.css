@@ -142,6 +142,15 @@ a:focus
 	list-style-type: square;
 	margin-left: 2em;
 }
+.upcomingCourse .uc-name {
+	font-weight: 600;
+}
+.upcomingCourse .uc-date {
+	display: block;
+	font-weight: 300;
+	font-size: 0.9em;
+	opacity: 0.85;
+}
 
 #instructorinner ul {
     margin: 0;

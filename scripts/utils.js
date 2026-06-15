@@ -44,12 +44,26 @@
 		}
 	}
 
+	function splitUpcomingCourses() {
+		var MONTHS = /(January|February|March|April|May|June|July|August|September|October|November|December)/;
+		var links = document.querySelectorAll('.upcomingCourse a.upcomingCourse');
+		for (var i = 0; i < links.length; i++) {
+			var a = links[i];
+			var text = a.textContent.trim();
+			var m = text.match(MONTHS);
+			if (!m) continue;
+			var idx = text.indexOf(m[1]);
+			a.innerHTML = '<span class="uc-name">' + text.slice(0, idx).trim().replace(/-$/, '').trim() + '</span><span class="uc-date">' + text.slice(idx).trim() + '</span>';
+		}
+	}
+
 	function applyUtils() {
 		hiddenNavItems.forEach(function (id) {
 			var el = document.getElementById('nav' + id);
 			if (el) el.parentNode.removeChild(el);
 		});
 		addInlineRegisterButton();
+		splitUpcomingCourses();
 		fitCardText();
 	}
 
