@@ -1205,6 +1205,12 @@ input:focus-visible {
 	text-transform: uppercase; 
 	letter-spacing: 0.05em;
 }
+
+.leftMenu ul li a i {
+	border: 0;
+	
+}
+
 .custom_footer_col address { font-style: normal; color: #545454; margin-bottom: 4px; }
 .custom_footer_col .cf_phone { color: #545454; margin: 4px 0; }
 .custom_footer_divider { width: 2px; background: #545454; align-self: stretch; flex: 0 0 2px; margin: 0 10px; }

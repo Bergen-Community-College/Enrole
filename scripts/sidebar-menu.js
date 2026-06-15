@@ -29,7 +29,14 @@
 			leftMenus[k].parentNode.removeChild(leftMenus[k]);
 		}
 
-		// Apply icons to matching items, hide the rest
+		// Only filter on minimal pages (index, calendar, cart, login)
+		var path = location.pathname;
+		var search = location.search;
+		var isMinimal = /(index|calendar|cart|login)\.jsp$/.test(path);
+		if (path.indexOf('index.jsp') !== -1 && search.indexOf('categoryId') !== -1) {
+			isMinimal = false;
+		}
+
 		var allLis = targetUl.querySelectorAll('li');
 		for (var i = 0; i < allLis.length; i++) {
 			var li = allLis[i];
@@ -53,7 +60,7 @@
 				icon.className = match.icon;
 				a.appendChild(icon);
 				a.appendChild(document.createTextNode(match.label));
-			} else {
+			} else if (isMinimal) {
 				li.style.display = 'none';
 			}
 		}
