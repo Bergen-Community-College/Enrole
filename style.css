@@ -142,14 +142,20 @@ a:focus
 	list-style-type: square;
 	margin-left: 2em;
 }
+.upcomingCourse a.upcomingCourse {
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+	gap: 1em;
+}
 .upcomingCourse .uc-name {
 	font-weight: 600;
 }
 .upcomingCourse .uc-date {
-	display: block;
 	font-weight: 300;
 	font-size: 0.9em;
 	opacity: 0.85;
+	white-space: nowrap;
 }
 
 #instructorinner ul {
