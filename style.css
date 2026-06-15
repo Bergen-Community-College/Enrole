@@ -347,7 +347,7 @@ a:focus
 .leftMenu ul.Level01 li a.active,
 .leftMenu ul.Level02 li a.active,
 .leftMenu ul li a.active {
-	background-color: #660099;
+	background-color: #3E0C70;
 	color: #fff;
 }
 .leftMenu ul.Level02 li a {
@@ -1009,7 +1009,7 @@ a.card:not(.imageCard) {
 	align-items: center;
 	text-decoration: none;
     color: white;
-    background: #660099;
+    background: #3E0C70;
 	border-radius: 20px;
 
 }
@@ -1212,7 +1212,7 @@ input:focus-visible {
 }
 
 .active {
-	background-color: #660099;
+	background-color: #3E0C70;
 	color: white
 }
 
