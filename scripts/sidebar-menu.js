@@ -1,7 +1,7 @@
 (function () {
 	var MENU_ITEMS = [
-		{ href: 'index.jsp',             icon: 'fa-solid fa-book-open',       label: 'Browse Courses' },
 		{ href: 'categoryId=C6B87DC8',        icon: 'fa-solid fa-location-dot',    label: 'Courses by Location' },
+		{ href: 'index.jsp',                  icon: 'fa-solid fa-book-open',       label: 'Browse Courses' },
 		{ href: 'calendar.jsp',               icon: 'fa-regular fa-calendar-days', label: 'Courses by Calendar' },
 		{ href: 'cart.jsp',                   icon: 'fa-solid fa-cart-shopping',   label: 'Registration Cart' },
 		{ href: 'login.jsp',                  icon: 'fa-solid fa-user',            label: 'Sign in/Create user profile' }
@@ -14,12 +14,19 @@
 		var targetUl = leftMenus[0].querySelector('ul');
 		if (!targetUl) return;
 
-		// Collect matches before clearing targetUl
+		// Collect matches — skip already-matched <a> elements
 		var items = [];
+		var used = [];
 		for (var i = 0; i < MENU_ITEMS.length; i++) {
 			var cfg = MENU_ITEMS[i];
-			var a = document.querySelector('.leftMenu a[href*="' + cfg.href + '"]');
-			if (a) items.push({ a: a, cfg: cfg });
+			var allLinks = document.querySelectorAll('.leftMenu a[href*="' + cfg.href + '"]');
+			for (var j = 0; j < allLinks.length; j++) {
+				if (used.indexOf(allLinks[j]) === -1) {
+					items.push({ a: allLinks[j], cfg: cfg });
+					used.push(allLinks[j]);
+					break;
+				}
+			}
 		}
 
 		if (!items.length) return;
@@ -43,11 +50,9 @@
 			targetUl.appendChild(li);
 		}
 
-		// Remove empty .leftMenu wrappers (keep index 0)
+		// Hide leftover .leftMenu wrappers
 		for (var k = leftMenus.length - 1; k > 0; k--) {
-			if (!leftMenus[k].querySelector('li')) {
-				leftMenus[k].parentNode.removeChild(leftMenus[k]);
-			}
+			leftMenus[k].style.display = 'none';
 		}
 	}
 
