@@ -14,45 +14,48 @@
 		var targetUl = leftMenus[0].querySelector('ul');
 		if (!targetUl) return;
 
-		// Collect matches — skip already-matched <a> elements
-		var items = [];
-		var used = [];
-		for (var i = 0; i < MENU_ITEMS.length; i++) {
-			var cfg = MENU_ITEMS[i];
-			var allLinks = document.querySelectorAll('.leftMenu a[href*="' + cfg.href + '"]');
-			for (var j = 0; j < allLinks.length; j++) {
-				if (used.indexOf(allLinks[j]) === -1) {
-					items.push({ a: allLinks[j], cfg: cfg });
-					used.push(allLinks[j]);
-					break;
+		// Move all <li> children from every .leftMenu into the first ul
+		for (var m = 1; m < leftMenus.length; m++) {
+			var uls = leftMenus[m].querySelectorAll('ul');
+			for (var u = 0; u < uls.length; u++) {
+				while (uls[u].children.length) {
+					targetUl.appendChild(uls[u].children[0]);
 				}
 			}
 		}
 
-		if (!items.length) return;
-
-		targetUl.innerHTML = '';
-
-		for (var i = 0; i < items.length; i++) {
-			var a = items[i].a;
-			var cfg = items[i].cfg;
-
-			var li = a.parentNode;
-			while (li && li.tagName !== 'LI') li = li.parentNode;
-			if (!li) continue;
-
-			a.innerHTML = '';
-			var icon = document.createElement('i');
-			icon.className = cfg.icon;
-			a.appendChild(icon);
-			a.appendChild(document.createTextNode(cfg.label));
-
-			targetUl.appendChild(li);
+		// Remove the now-empty wrappers
+		for (var k = leftMenus.length - 1; k > 0; k--) {
+			leftMenus[k].parentNode.removeChild(leftMenus[k]);
 		}
 
-		// Hide leftover .leftMenu wrappers
-		for (var k = leftMenus.length - 1; k > 0; k--) {
-			leftMenus[k].style.display = 'none';
+		// Apply icons to matching items, hide the rest
+		var allLis = targetUl.querySelectorAll('li');
+		for (var i = 0; i < allLis.length; i++) {
+			var li = allLis[i];
+			var a = li.querySelector('a');
+			if (!a) continue;
+
+			var href = a.getAttribute('href') || '';
+			var match = null;
+			for (var j = 0; j < MENU_ITEMS.length; j++) {
+				if (href.indexOf(MENU_ITEMS[j].href) !== -1) {
+					match = MENU_ITEMS[j];
+					break;
+				}
+			}
+
+			if (match) {
+				var oldIcon = a.querySelector('i');
+				if (oldIcon) oldIcon.parentNode.removeChild(oldIcon);
+				a.innerHTML = '';
+				var icon = document.createElement('i');
+				icon.className = match.icon;
+				a.appendChild(icon);
+				a.appendChild(document.createTextNode(match.label));
+			} else {
+				li.style.display = 'none';
+			}
 		}
 	}
 

@@ -27,12 +27,12 @@
 		cssFiles.forEach(function (href) {
 			var l = document.createElement('link');
 			l.rel = 'stylesheet';
-			l.href = cssBase + href;
+			l.href = /^https?:\/\//.test(href) ? href : cssBase + href;
 			document.head.appendChild(l);
 		});
 		scripts.forEach(function (src) {
 			var s = document.createElement('script');
-			s.src = scriptBase + src;
+			s.src = /^https?:\/\//.test(src) ? src : scriptBase + src;
 			document.head.appendChild(s);
 		});
 	}
