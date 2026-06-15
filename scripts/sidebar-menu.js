@@ -62,9 +62,24 @@
 				icon.className = match.icon;
 				a.appendChild(icon);
 				a.appendChild(document.createTextNode(match.label));
-			} else if (isMinimal) {
-				li.style.display = 'none';
+				li._matchIndex = j;
+			} else {
+				li._matchIndex = -1;
+				if (isMinimal) li.style.display = 'none';
 			}
+		}
+
+		// Sort matched items by MENU_ITEMS order, unmatched stay at bottom
+		var lisArray = Array.prototype.slice.call(targetUl.children);
+		lisArray.sort(function (a, b) {
+			var ai = a._matchIndex, bi = b._matchIndex;
+			if (ai !== -1 && bi !== -1) return ai - bi;
+			if (ai !== -1) return -1;
+			if (bi !== -1) return 1;
+			return 0;
+		});
+		for (var si = 0; si < lisArray.length; si++) {
+			targetUl.appendChild(lisArray[si]);
 		}
 	}
 

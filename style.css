@@ -1208,7 +1208,12 @@ input:focus-visible {
 
 .leftMenu ul li a i {
 	border: 0;
-	
+
+}
+
+.active {
+	background-color: #660099;
+	color: white
 }
 
 .custom_footer_col address { font-style: normal; color: #545454; margin-bottom: 4px; }
