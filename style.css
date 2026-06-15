@@ -486,16 +486,19 @@ a:focus
 	color: #545454;
 }
 #login input.submit,
+.cartOption input.submit,
 .cf-inline-submit-row input.submit {
 	color: #fff;
 	background-color: #FF6600;
 	border: 0;
+	border-radius: 6px;
 	font-family: inherit;
 	font-size: inherit;
 	margin: 5px;
 	padding: 6px 16px;
 }
 #login input.submit:hover,
+.cartOption input.submit:hover,
 .cf-inline-submit-row input.submit:hover {
 	color: #000;
 	background-color: #ffb380;
@@ -682,21 +685,6 @@ label {
 .cartOption a:hover {
 	background-color: #00579d;
 	color: #fff;
-}
-.cartOption input.submit {
-	border: 0;
-	background-color: #ffcb06;
-	color: #1c2b57;
-	border-radius: 50px;
-	width: auto;
-	text-decoration: underline;
-}
-.cartOption input.submit:hover {
-	color: #fff;
-	text-decoration: none;
-}
-.cartOption > input.submit {
-	font-size: inherit;
 }
 #cartOption a::after {
 	content: "";
@@ -1015,13 +1003,17 @@ a.imageCard {
 
 a.card:hover {
 	margin: 0px;
+	border: none;
 }
 
 a.card:not(.imageCard) {
-	aspect-ratio: 5/1;
-	align-items: start !important;
-	padding-left: 2em !important;
+	height: 40px;
+	align-items: center;
 	text-decoration: none;
+    color: white;
+    background: #660099;
+	border-radius: 20px;
+
 }
 
 a.card img {
