@@ -1,4 +1,8 @@
 (function () {
+  var HIDE_ITEMS = [
+    "instructorListing.jsp"
+  ];
+
   var MENU_ITEMS = [
     {
       href: "index.jsp",
@@ -68,6 +72,20 @@
       if (!a) continue;
 
       var href = a.getAttribute("href") || "";
+
+      // Always hide items matching HIDE_ITEMS
+      var hide = false;
+      for (var hi = 0; hi < HIDE_ITEMS.length; hi++) {
+        if (href.indexOf(HIDE_ITEMS[hi]) !== -1) {
+          hide = true;
+          break;
+        }
+      }
+      if (hide) {
+        li.style.display = "none";
+        continue;
+      }
+
       var match = null;
       for (var j = 0; j < MENU_ITEMS.length; j++) {
         var entry = MENU_ITEMS[j];
