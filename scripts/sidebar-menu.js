@@ -78,7 +78,7 @@
     // Only filter on minimal pages (index, cart, login)
     var path = location.pathname;
     var search = location.search;
-    var isMinimal = /(index|cart|login)\.jsp$/.test(path);
+    var isMinimal = /(index|cart|login|myaccount)\.jsp$/.test(path);
     if (
       path.indexOf("index.jsp") !== -1 &&
       search.indexOf("categoryId") !== -1
