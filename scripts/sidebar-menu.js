@@ -27,17 +27,17 @@
       label: "Registration Cart",
     },
     {
-      href: "categoryId=87C83B68.jsp",
+      href: "categoryId=87C83B68",
       icon: "fa-solid fa-cart-award",
       label: "Credential Programs",
     },
     {
-      href: "categoryId=87C950C0.jsp",
+      href: "categoryId=87C950C0",
       icon: "fa-solid fa-cart-laptop",
       label: "Partner Online Courses",
     },
     {
-      href: "categoryId=87C9A6B0.jsp",
+      href: "categoryId=87C9A6B0",
       icon: "fa-solid fa-cart-briefcase",
       label: "Bergen for Business",
     },
