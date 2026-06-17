@@ -33,6 +33,10 @@
 		var mainContent = document.getElementById('maincontent');
 		if (!mainContent) return;
 
+		// Skip if first element is an empty cardContainer (page has its own header)
+		var first = mainContent.firstElementChild;
+		if (first && first.classList.contains('cardContainer') && !first.children.length) return;
+
 		var subHeader = document.createElement('h1');
 		subHeader.className = 'subHeader';
 		subHeader.textContent = label;
