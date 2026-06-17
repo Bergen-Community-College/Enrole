@@ -314,7 +314,7 @@ a:focus .subheadinglink a:hover,
 }
 .leftMenu ul li a,
 .leftMenu ul.Level00 li a {
-  color: #00022d;
+  color: #333333;
   padding: 11px 15px 11px 15px;
   border-radius: 0;
   border-top: 1px solid #ccc;
@@ -323,13 +323,12 @@ a:focus .subheadinglink a:hover,
 .leftMenu ul.Level00 > li:first-child > a {
   border-top: 0;
 }
-/* 2022 update */
 .leftMenu ul li a:hover,
 .leftMenu ul.Level00 li a:hover,
 .leftMenu ul.Level01 li a:hover,
 .leftMenu ul.Level02 li a:hover,
 .leftMenu ul.Level03 li a:hover {
-  color: #003d6e;
+  color: #3E0C70;
   background-color: #d9d9d9;
   text-decoration: none;
 }
@@ -825,6 +824,9 @@ a:focus,
 @media (max-width: 767px) and (min-width: 150px) {
   html {
     font-size: 12px;
+  }
+  .leftMenu ul li a {
+    font-size: 1rem;
   }
   #header_title {
     max-width: 200px;
