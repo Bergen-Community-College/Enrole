@@ -27,6 +27,21 @@
       label: "Registration Cart",
     },
     {
+      href: "categoryId=CredentialPrograms.jsp",
+      icon: "fa-solid fa-cart-award",
+      label: "Credential Programs",
+    },
+    {
+      href: "categoryId=PartnerOnlineCourses.jsp",
+      icon: "fa-solid fa-cart-laptop",
+      label: "Partner Online Courses",
+    },
+    {
+      href: "categoryId=BergenForBusiness.jsp",
+      icon: "fa-solid fa-cart-briefcase",
+      label: "Bergen for Business",
+    },
+    {
       href: "login.jsp",
       icon: "fa-solid fa-user",
       label: "Sign in/Create user profile",
@@ -88,6 +103,7 @@
         }
       }
       if (hide) {
+        li._matchIndex = -1;
         li.style.display = "none";
         continue;
       }
