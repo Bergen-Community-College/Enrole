@@ -20,3 +20,4 @@ htmlcov/
 *.pyd
 *.so
 /scraper/venv
+.claude
