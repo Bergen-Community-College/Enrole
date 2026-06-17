@@ -1,6 +1,7 @@
 (function () {
   var HIDE_ITEMS = [
-    "instructorListing.jsp"
+    "instructorListing.jsp",
+	"logout.jsp"
   ];
 
   var MENU_ITEMS = [
@@ -30,6 +31,11 @@
       icon: "fa-solid fa-user",
       label: "Sign in/Create user profile",
     },
+    {
+      href: "myaccount.jsp",
+      icon: "fa-solid fa-user",
+      label: "My Account",
+    }
   ];
 
   function init() {
