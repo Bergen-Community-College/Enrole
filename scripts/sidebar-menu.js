@@ -1,7 +1,7 @@
 (function () {
   var HIDE_ITEMS = [
     "instructorListing.jsp",
-	"logout.jsp"
+    "logout.jsp"
   ];
 
   var MENU_ITEMS = [
@@ -75,7 +75,7 @@
       leftMenus[k].parentNode.removeChild(leftMenus[k]);
     }
 
-    // Only filter on minimal pages (index, cart, login)
+    // Only filter on minimal pages (index, cart, login, myaccount)
     var path = location.pathname;
     var search = location.search;
     var isMinimal = /(index|cart|login|myaccount)\.jsp$/.test(path);
@@ -87,6 +87,10 @@
     }
 
     var allLis = targetUl.querySelectorAll("li");
+    var matchedByIndex = [];
+    var unmatched = [];
+    var used = [];
+
     for (var i = 0; i < allLis.length; i++) {
       var li = allLis[i];
       var a = li.querySelector("a");
@@ -103,7 +107,6 @@
         }
       }
       if (hide) {
-        li._matchIndex = -1;
         li.style.display = "none";
         continue;
       }
@@ -113,7 +116,9 @@
         var entry = MENU_ITEMS[j];
         if (href.indexOf(entry.href) !== -1) {
           if (entry.exclude && href.indexOf(entry.exclude) !== -1) continue;
+          if (used.indexOf(j) !== -1) continue;
           match = entry;
+          used.push(j);
           break;
         }
       }
@@ -126,29 +131,25 @@
         icon.className = match.icon;
         a.appendChild(icon);
         a.appendChild(document.createTextNode(match.label));
-        li._matchIndex = j;
+        matchedByIndex.push({ li: li, idx: j });
       } else {
-        li._matchIndex = -1;
         var otherIcons = a.querySelectorAll("i");
         for (var oi = 0; oi < otherIcons.length; oi++) {
           otherIcons[oi].parentNode.removeChild(otherIcons[oi]);
         }
         if (isMinimal) li.style.display = "none";
+        unmatched.push(li);
       }
     }
 
-    // Sort matched items by MENU_ITEMS order, unmatched stay at bottom
-    var lisArray = Array.prototype.slice.call(targetUl.children);
-    lisArray.sort(function (a, b) {
-      var ai = a._matchIndex,
-        bi = b._matchIndex;
-      if (ai !== -1 && bi !== -1) return ai - bi;
-      if (ai !== -1) return -1;
-      if (bi !== -1) return 1;
-      return 0;
-    });
-    for (var si = 0; si < lisArray.length; si++) {
-      targetUl.appendChild(lisArray[si]);
+    // Sort matched items by MENU_ITEMS index, then rebuild ul
+    matchedByIndex.sort(function (a, b) { return a.idx - b.idx; });
+    targetUl.innerHTML = "";
+    for (var mi = 0; mi < matchedByIndex.length; mi++) {
+      targetUl.appendChild(matchedByIndex[mi].li);
+    }
+    for (var ui = 0; ui < unmatched.length; ui++) {
+      targetUl.appendChild(unmatched[ui]);
     }
 
     // Mark current page as active
