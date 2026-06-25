@@ -744,13 +744,19 @@ label {
 .cart a:hover {
   color: #23527c;
 }
+form#discountForm {
+  display: none;
+}
 .cartOption a {
   margin-right: 7px;
   padding-left: 15px;
   padding-right: 15px;
+  background-color: #FF6600;
+  color: #fff;
+  border-radius: 50px;
 }
 .cartOption a:hover {
-  background-color: #00579d;
+  background-color: #E65C00;
   color: #fff;
 }
 #cartOption a::after {
