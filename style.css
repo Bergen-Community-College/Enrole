@@ -695,7 +695,7 @@ table:has(tr:first-child h1.subHeader) tr:nth-child(2) {
 .logHeading {
   color: #333333;
 }
-.forgotPw a {
+.logform .forgotPw a {
   color: #333333;
 }
 #importantDescription {
