@@ -692,6 +692,12 @@ table:has(tr:first-child h1.subHeader) tr:nth-child(2) {
 .logform .forgotPw {
   color: inherit;
 }
+.logHeading {
+  color: #333333;
+}
+.forgotPw > a {
+  color: #333333;
+}
 #importantDescription {
   line-height: 1.7;
   text-align: left;
