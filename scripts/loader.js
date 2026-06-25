@@ -7,7 +7,7 @@
 		'sidebar-menu.js',
 		// 'category-loader.js',
 		'utils.js',
-		//'register.js',
+		'register.js',
 		'subHeader.js'
 	];
 
