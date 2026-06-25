@@ -657,6 +657,8 @@ table:has(tr:first-child h1.subHeader) tr:nth-child(2) {
   padding-left: 30px;
 }
 .logform {
+  background: #E6E6E6;
+  color: #333;
 }
 .logform input {
   background: #fff;
@@ -665,26 +667,26 @@ table:has(tr:first-child h1.subHeader) tr:nth-child(2) {
 .logform button {
   margin-left: 0;
   margin-right: 0;
-  background: #03539e;
+  background: #660099;
   color: #fff;
   text-transform: none;
   font-weight: bold;
 }
 .logform button:hover,
 .logform button:focus {
-  background: #1374ce;
+  background: #8000bf;
   color: #fff;
   font-weight: bold;
 }
 .logform button[type="submit"] {
-  background: #ffcb06;
-  color: #1c2b57;
+  background: #FF6600;
+  color: #fff;
   font-weight: bold;
 }
 .logform button[type="submit"]:hover,
 .logform button[type="submit"]:focus {
-  background: #ffe47c;
-  color: #1c2b57;
+  background: #ff8c4d;
+  color: #fff;
   font-weight: bold;
 }
 .logform .forgotPw {
