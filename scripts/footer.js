@@ -45,17 +45,17 @@
 	];
 
 	var resources = [
-		'<a href="//ce.bergen.edu">Staff Directory</a>',
-		'<a href="//ce.bergen.edu">CE Career Support</a>',
-		'<a href="//ce.bergen.edu">Work at Bergen</a>',
-		'<a href="//ce.bergen.edu">Propose a Class</a>'
+		'<a href="https://bergen.edu/ce/ce-staff-directory/" target="_blank" rel="noopener">Staff Directory</a>',
+		'<a href="//ce.bergen.edu" target="_blank" rel="noopener">CE Career Support</a>',
+		'<a href="https://workforcenow.adp.com/mascsr/default/mdf/recruitment/recruitment.html?cid=010bf3a6-6a65-40e6-867b-0fdaf8595884&ccId=19000101_000001&lang=en_US" target="_blank" rel="noopener">Work at Bergen</a>',
+		'<a href="https://bergen.edu/ce/teaching-opportunities-proposals/" target="_blank" rel="noopener">Propose a Class</a>'
 	];
 
 	var staff_links = [
-		'<a href="//ce.bergen.edu">Instructor Portal</a>',
-		'<a href="//ce.bergen.edu">Staff Login</a>',
-		'<a href="//ce.bergen.edu">ADP</a>',
-		'<a href="//ce.bergen.edu">Ad Astra</a>'
+		'<a href="https://www.enrole.com:8443/testcebergen/instructors" target="_blank" rel="noopener">Instructor Portal</a>',
+		'<a href="https://www.enrole.com:8891/testcebergen/Enrole.html" target="_blank" rel="noopener">Staff Login</a>',
+		'<a href="http://workforcenow.adp.com/" target="_blank" rel="noopener">ADP</a>',
+		'<a href="https://www.aaiscloud.com/BergenCC/Calendars/DailyGridCalendar.aspx" target="_blank" rel="noopener">Ad Astra</a>'
 	];
 
 
