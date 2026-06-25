@@ -6,6 +6,7 @@
   src: url("fonts/oswald.light.ttf") format("truetype");
 }
 @import url("https://fonts.googleapis.com/css2?family=News+Cycle:wght@400;700&display=swap");
+
 html,
 body {
   background: #2a2a2a;
@@ -299,6 +300,7 @@ a:focus .subheadinglink a:hover,
   padding-left: 0;
   padding-top: 0px;
   padding-bottom: 15px;
+  font-family: 'Oswald';
 }
 
 .leftMenu > ul {
