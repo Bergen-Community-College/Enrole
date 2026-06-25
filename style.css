@@ -144,10 +144,12 @@ a:focus .subheadinglink a:hover,
   margin-left: 2em;
 }
 .upcomingCourse a.upcomingCourse {
-  display: flex;
+  /* display: flex; */
+  display: grid;
   justify-content: space-between;
   align-items: baseline;
-  gap: 1em;
+  /* gap: 1em; */
+  
 }
 .upcomingCourse .uc-name {
   font-weight: 600;
@@ -157,6 +159,14 @@ a:focus .subheadinglink a:hover,
   font-size: 0.9em;
   opacity: 0.85;
   white-space: nowrap;
+}
+
+/* Upcoming Courses table — border the courses row (second tr) */
+table:has(tr:first-child h1.subHeader) {
+  border-collapse: collapse;
+}
+table:has(tr:first-child h1.subHeader) tr:nth-child(2) {
+  border: 7px solid #ddd;
 }
 
 #instructorinner ul {
