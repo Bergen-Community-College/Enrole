@@ -30,6 +30,23 @@
 			subHeaderDesc.textContent = description;
 			subHeader.insertAdjacentElement('afterend', subHeaderDesc);
 		}
+
+		var cardContainer = mainContent.querySelector('.cardContainer');
+		if (cardContainer) {
+			var cardsHeader = document.createElement('h1');
+			cardsHeader.className = 'subHeader';
+			cardsHeader.textContent = 'Explore Topics';
+			cardContainer.parentNode.insertBefore(cardsHeader, cardContainer);
+		}
+
+		// Rewrite the platform's "Courses" listing header to include the page title
+		var headers = mainContent.querySelectorAll('h1.subHeader');
+		for (var h = 0; h < headers.length; h++) {
+			if (headers[h].textContent.trim() === 'Courses') {
+				headers[h].textContent = 'All ' + label + ' courses';
+				break;
+			}
+		}
 	}
 
 	if (document.readyState === 'loading') {
