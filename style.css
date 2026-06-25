@@ -785,6 +785,15 @@ tr:has(#keycode) {
   vertical-align: middle;
   white-space: nowrap;
   text-decoration: none;
+  width: auto;
+  max-width: none;
+  flex-shrink: 0;
+  overflow: visible;
+}
+/* Remove the focus ring on click, keep it for keyboard navigation */
+.cartOption a:focus:not(:focus-visible),
+.cartOption input.submit:focus:not(:focus-visible) {
+  outline: none;
 }
 #cartOption a::after {
   content: "";
