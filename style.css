@@ -634,6 +634,13 @@ a:focus .subheadinglink a:hover,
 .subHeader:not(:first-child) {
   margin-top: 1rem;
 }
+.subHeaderDescription {
+  margin: 0 0 1.5rem;
+  max-width: 70ch;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  opacity: 0.85;
+}
 #content .inner {
   padding-top: 0;
   padding-right: 0;
@@ -1141,6 +1148,7 @@ div.cardContainer {
   display: grid;
   grid-template-columns: 1fr;
   gap: 16px;
+  margin-bottom: 45px;
 }
 
 a.card,
