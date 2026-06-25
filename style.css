@@ -323,6 +323,10 @@ a:focus .subheadinglink a:hover,
 .leftMenu ul.Level00 > li:first-child > a {
   border-top: 0;
 }
+/* White separator above the first category item (first one without an icon) */
+.leftMenu ul li:has(a i) + li:not(:has(a i)) > a {
+  margin-top: 25px;
+}
 .leftMenu ul li a:hover,
 .leftMenu ul.Level00 li a:hover,
 .leftMenu ul.Level01 li a:hover,
