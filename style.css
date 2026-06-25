@@ -550,6 +550,14 @@ table:has(tr:first-child h1.subHeader) tr:nth-child(2) {
   color: #000;
   background-color: #ffb380;
 }
+/* Cart Checkout button — match the orange pill style of .cartOption a */
+.cartOption input.submit {
+  border-radius: 50px;
+}
+.cartOption input.submit:hover {
+  color: #fff;
+  background-color: #E65C00;
+}
 #login a {
   font-size: inherit;
   background: none;
@@ -747,6 +755,10 @@ label {
 form#discountForm {
   display: none;
 }
+/* Hide the Promotional Mailing Code row */
+tr:has(#keycode) {
+  display: none;
+}
 .cartOption a {
   margin-right: 7px;
   padding-left: 15px;
@@ -809,7 +821,6 @@ a,
 .cart a,
 .subheadinglink a {
   font-weight: bold;
-  color: #005eba;
 }
 a:hover,
 a:focus,
