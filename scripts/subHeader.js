@@ -1,8 +1,17 @@
 (function () {
+	function cleanTitle(title) {
+		// Drop the trailing site-name segment (after the last " - " or " | ")
+		var parts = (title || '').split(/\s+[-|]\s+/);
+		if (parts.length > 1) parts.pop();
+		var label = parts.join(' - ').trim();
+		// Drop a trailing descriptor like "courses" / "programs"
+		return label.replace(/\s+(courses|programs|certificates|degrees)$/i, '').trim();
+	}
+
 	function init() {
 		if (!location.pathname.endsWith('index.jsp')) return;
 
-		var label = (document.title || '').trim();
+		var label = cleanTitle(document.title);
 		if (!label) return;
 
 		var mainContent = document.getElementById('maincontent');
