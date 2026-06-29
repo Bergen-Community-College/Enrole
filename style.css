@@ -1415,12 +1415,12 @@ input:focus-visible {
   letter-spacing: 0.05em;
 }
 
-/* .leftMenu ul li a i {
+.leftMenu ul li a i {
   border: 0;
 }
 .leftMenu ul li a:has(i) {
   padding: 20px;
-} */
+}
 
 .active {
   background-color: #3e0c70;
