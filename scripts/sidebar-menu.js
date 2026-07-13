@@ -54,6 +54,18 @@
   ];
 
   function init() {
+    // Drop ALL sub-menus (Level01+) before we merge anything. We never want
+    // sub-menus to render — even when the platform auto-expands a parent
+    // category on its own landing page (e.g. Business and Technology at
+    // 8A026C40, where Real Estate's children would otherwise show up).
+    var subMenus = document.querySelectorAll(
+      "ul.Level01, ul.Level02, ul.Level03"
+    );
+    for (var i = 0; i < subMenus.length; i++) {
+      var sub = subMenus[i];
+      if (sub.parentNode) sub.parentNode.removeChild(sub);
+    }
+
     var leftMenus = document.querySelectorAll(".leftMenu");
     if (leftMenus.length < 2) return;
 

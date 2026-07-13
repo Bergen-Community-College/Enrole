@@ -9,7 +9,14 @@
 	}
 
 	function init() {
-		if (!location.pathname.endsWith('index.jsp')) return;
+		// Skip the platform's bare homepage: a URL whose path+search ends exactly
+		// with "index.jsp" (no categoryId / query string).
+		if ((location.pathname + location.search).endsWith('index.jsp')) return;
+
+		// Some category landing pages (e.g. Manufacturing, C6B4C890) render an
+		// amb-page layout instead of #maincontent. We must not inject our title
+		// or "Explore Topics" header onto those pages.
+		if (document.querySelector('div.amb-page')) return;
 
 		var label = cleanTitle(document.title);
 		if (!label) return;
@@ -18,7 +25,10 @@
 		if (!mainContent) return;
 
 		var subHeader = document.createElement('h1');
-		subHeader.className = 'subHeader';
+		// .subHeader--page-title marks the page-title header inserted at the top;
+		// other subHeaders (Explore Topics, Upcoming Courses, All X Courses) use
+		// a sans-serif font — see style.css.
+		subHeader.className = 'subHeader subHeader--page-title';
 		subHeader.textContent = label;
 		mainContent.insertBefore(subHeader, mainContent.firstChild);
 
@@ -39,11 +49,12 @@
 			cardContainer.parentNode.insertBefore(cardsHeader, cardContainer);
 		}
 
-		// Rewrite the platform's "Courses" listing header to include the page title
+		// Rewrite the platform's "Courses" listing header to include the page
+		// title. Capitalize "Courses" to match the rest of the headings.
 		var headers = mainContent.querySelectorAll('h1.subHeader');
 		for (var h = 0; h < headers.length; h++) {
 			if (headers[h].textContent.trim() === 'Courses') {
-				headers[h].textContent = 'All ' + label + ' courses';
+				headers[h].textContent = 'All ' + label + ' Courses';
 				break;
 			}
 		}

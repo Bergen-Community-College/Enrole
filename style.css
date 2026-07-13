@@ -161,13 +161,11 @@ a:focus .subheadinglink a:hover,
   white-space: nowrap;
 }
 
-/* Upcoming Courses table — border the courses row (second tr) */
+/* Upcoming Courses table */
 table:has(tr:first-child h1.subHeader) {
   border-collapse: collapse;
 }
-table:has(tr:first-child h1.subHeader) tr:nth-child(2) {
-  border: 7px solid #ddd;
-}
+/* Border removed by request — was: border: 7px solid #ddd; */
 
 #instructorinner ul {
   margin: 0;
@@ -209,7 +207,7 @@ table:has(tr:first-child h1.subHeader) tr:nth-child(2) {
   border: 0;
   transition: none;
 }
-#skiptocontent a:focus {
+#skiptocontent a:focus-visible {
   position: static;
   width: auto;
   height: auto;
@@ -222,10 +220,11 @@ table:has(tr:first-child h1.subHeader) tr:nth-child(2) {
   border: 0;
   border-radius: 0;
   text-align: center;
-  background: #4169e1;
+  background: #ff6600;
 
   transition: none;
-  outline: 5px auto -webkit-focus-ring-color;
+  outline: 3px solid #ff6600;
+  outline-offset: 2px;
 }
 #skiptocontent a:hover {
   color: #fff;
@@ -404,13 +403,11 @@ table:has(tr:first-child h1.subHeader) tr:nth-child(2) {
   color: #fff;
   background-color: #18202c;
 }
-.nav-toggle:hover,
-.nav-toggle:focus,
-.nav-toggle:active {
+.nav-toggle:focus-visible {
   font-weight: bold;
   text-decoration: none;
   color: #fff;
-  background-color: #344f76;
+  background-color: #ff6600;
 }
 .nav-toggle:before {
   content: "";
@@ -650,14 +647,25 @@ table:has(tr:first-child h1.subHeader) tr:nth-child(2) {
   /* border-bottom: 0px solid #42C2D5; */
 }
 .subHeader:not(:first-child) {
-  margin-top: 1rem;
+  margin-top: 1.5rem;
 }
 .subHeaderDescription {
   margin: 0 0 1.5rem;
-  max-width: 70ch;
+  width: 100%;
+  max-width: none;
   font-size: 1.1rem;
   line-height: 1.6;
   opacity: 0.85;
+}
+/*
+ * Section sub-headers ("Explore Topics", "Upcoming Courses", "All X Courses")
+ * use a sans-serif font. The page-title subheader inserted at the top of the
+ * content keeps Oswald (inherited from h1) via its .subHeader--page-title class.
+ */
+.subHeader:not(.subHeader--page-title) {
+  font-family: arial, sans-serif !important;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 #content .inner {
   padding-top: 0;
@@ -749,8 +757,8 @@ label {
 }
 .cart a {
 }
-.cart a:hover {
-  color: #23527c;
+.cart a:focus-visible {
+  color: #ff6600;
 }
 form#discountForm {
   display: none;
@@ -846,36 +854,23 @@ a,
 .subheadinglink a {
   font-weight: bold;
 }
-a:hover,
-a:focus,
-.courses a:hover,
-.subheadinglink a:hover {
-  color: #23527c;
+a:focus-visible,
+.courses a:focus-visible,
+.subheadinglink a:focus-visible {
+  color: #ff6600;
   font-weight: bold;
+  outline: 3px solid #ff6600;
+  outline-offset: -2px;
 }
 #content .subheadinglink a {
   padding: 0 0 10px;
   display: inline-block;
 }
-.courses a:hover {
+.courses a:focus-visible {
   font-size: 0.813rem;
 }
-.subheadinglink a:hover {
+.subheadinglink a:focus-visible {
   font-size: 1rem;
-}
-a:hover,
-a:focus,
-.courses a:hover,
-.courses a:focus,
-.subheadinglink a:hover,
-.subheadinglink a:focus {
-  color: #23527c;
-}
-a:focus,
-.courses a:focus,
-.subheadinglink a:focus {
-  outline: 5px auto -webkit-focus-ring-color;
-  outline-offset: -2px;
 }
 #popularContainer {
   width: 23%;
@@ -1005,10 +1000,9 @@ a:focus,
   border-radius: 3px;
   font-size: 81%;
 }
-.category-links a:hover,
-.category-links a:focus {
-  background-color: #ccf4ff;
-  border-color: #03539e;
+.category-links a:focus-visible {
+  background-color: #ffe9d9;
+  border-color: #ff6600;
 }
 .category-thumbnails .upcoming::before {
   content: "Coming Soon!";
@@ -1207,7 +1201,7 @@ div.cardContainer {
   display: grid;
   grid-template-columns: 1fr;
   gap: 16px;
-  margin-bottom: 45px;
+  margin-bottom: 1.5rem;
 }
 
 a.card,
@@ -1355,6 +1349,11 @@ div#testBanner {
 
 input:focus-visible {
   outline: 3px solid #ff6600;
+}
+
+/* Hide checkout.jsp's subHeaderNote */
+#checkoutForm #subHeaderNote {
+  display: none;
 }
 
 /* ── Custom Footer ─────────────────────────────────────────────────────────── */
