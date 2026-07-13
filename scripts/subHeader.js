@@ -13,15 +13,14 @@
 		// with "index.jsp" (no categoryId / query string).
 		if ((location.pathname + location.search).endsWith('index.jsp')) return;
 
-		// Some category landing pages (e.g. Manufacturing, C6B4C890) render an
-		// amb-page layout instead of #maincontent. We must not inject our title
-		// or "Explore Topics" header onto those pages.
-		if (document.querySelector('div.amb-page')) return;
-
 		var label = cleanTitle(document.title);
 		if (!label) return;
 
 		var mainContent = document.getElementById('maincontent');
+		// Per spec: only bail on amb-page layouts, where #maincontent is absent
+		// *and* div.amb-page replaces it (e.g. Manufacturing page, C6B4C890).
+		// Don't bail just because div.amb-page exists — it may coexist with
+		// #maincontent on some platform templates.
 		if (!mainContent) return;
 
 		var subHeader = document.createElement('h1');
@@ -41,8 +40,11 @@
 			subHeader.insertAdjacentElement('afterend', subHeaderDesc);
 		}
 
+		// Only add "Explore Topics" when there's actually a cardContainer with
+		// cards inside it. On pages like FEE99BA0 and 87C83B68 the platform
+		// leaves the cardContainer empty, so showing the header is misleading.
 		var cardContainer = mainContent.querySelector('.cardContainer');
-		if (cardContainer) {
+		if (cardContainer && cardContainer.children.length > 0) {
 			var cardsHeader = document.createElement('h1');
 			cardsHeader.className = 'subHeader';
 			cardsHeader.textContent = 'Explore Topics';

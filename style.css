@@ -659,11 +659,13 @@ table:has(tr:first-child h1.subHeader) {
 }
 /*
  * Section sub-headers ("Explore Topics", "Upcoming Courses", "All X Courses")
- * use a sans-serif font. The page-title subheader inserted at the top of the
- * content keeps Oswald (inherited from h1) via its .subHeader--page-title class.
+ * use a sans-serif font at 1.5rem. The page-title subheader inserted at the
+ * top of the content keeps Oswald 2rem (inherited from h1 + .subHeader base)
+ * via its .subHeader--page-title class.
  */
 .subHeader:not(.subHeader--page-title) {
   font-family: arial, sans-serif !important;
+  font-size: 1.5rem;
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
 }
