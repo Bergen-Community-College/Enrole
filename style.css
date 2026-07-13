@@ -1251,9 +1251,15 @@ span.cardText {
   align-items: center;
   gap: 6px;
   flex-shrink: 0;
-  /* Prevent the global .active { background-color:#3e0c70; color:white; }
-     from painting a purple square behind the step and washing out the
-     purple step-title label below the circle. */
+}
+/*
+ * Override the global .active { background-color:#3e0c70; color:white; }
+ * which is defined later in this file and would otherwise paint a purple
+ * square behind the active step indicator and wash out the step label.
+ * These two rules have higher specificity (.cf-wizard-step-item.active vs .active).
+ */
+.cf-wizard-step-item.active,
+.cf-wizard-step-item.done {
   background-color: transparent;
   color: inherit;
 }
@@ -1294,6 +1300,9 @@ span.cardText {
 .cf-wizard-step-item.done .cf-wizard-step-label {
   color: #3e0c70;
   font-weight: 700;
+}
+.cf-wizard-step-item.active .cf-wizard-step-label {
+  color: #ff6600;
 }
 .cf-wizard-step-line {
   flex: 1;
