@@ -6,6 +6,15 @@
 		return;
 	}
 
+	/*
+	 * Wizard step layout (5 steps) for addAttendee.jsp?source=register.
+	 *
+	 * Rows are platform <tr id="row…"> elements EXCEPT the two retype fields
+	 * (retypepassword, retypereminder). The platform emits those as bare <td>
+	 * cells without a wrapping <tr>, so the browser foster-parents them into an
+	 * anonymous row with no id. We tag those rows at runtime (see wrapRetypes)
+	 * so showStep() can control them like any other row.
+	 */
 	var STEPS = [
 		{
 			title: 'Your Profile',
@@ -23,8 +32,10 @@
 				'rowemail',
 				'rowusername',
 				'rowpassword',
+				'rowretypepassword',
 				'rowsq',
-				'rowreminder'
+				'rowreminder',
+				'rowretypereminder'
 			]
 		},
 		{
@@ -40,6 +51,15 @@
 			]
 		},
 		{
+			title: 'Emergency Contacts',
+			rows: [
+				'rowUDTESTCEBERGENKTEMERGCONTACTNAME1',
+				'rowUDTESTCEBERGENKTEMERGPHONE1',
+				'rowUDTESTCEBERGENKTEMERGCONTACTNAME2',
+				'rowUDTESTCEBERGENKTEMERGPHONE2'
+			]
+		},
+		{
 			title: 'About You',
 			rows: [
 				'rowUDTESTCEBERGENCITIZEN',
@@ -51,27 +71,29 @@
 				'rowUDTESTCEBERGENETHNICGROUPS',
 				'rowUDTESTCEBERGENTEXTMESSAGING'
 			]
-		},
-		{
-			title: 'Workshop',
-			rows: [
-				'rowWorkshopNote',
-				'rowWorkshopHeader',
-				'rowUDTESTCEBERGENJOBTITLE',
-				'rowUDTESTCEBERGENWAGENJBIA',
-				'rowCOMPANYcompanyName',
-				'rowUDTESTCEBERGENFEINNUMBER',
-				'rowCOMPANYaddress1',
-				'rowCOMPANYcity',
-				'rowCOMPANYstate',
-				'rowCOMPANYzip',
-				'rowUDTESTCEBERGENCOUNTY',
-				'rowCOMPANYcountry',
-				'rowUDTESTCEBERGENMGREMAIL',
-				'rowUDTESTCEBERGENMGRPHONE'
-			]
 		}
 	];
+
+	/*
+	 * The platform renders retypepassword / retypereminder as bare <td> cells
+	 * after rowpassword / rowreminder. The browser foster-parents them into an
+	 * anonymous <tr> with no id. Walk up from the input to that anonymous <tr>
+	 * and tag it so showStep() can hide/show it like any other row.
+	 */
+	function wrapRetypes() {
+		var pairs = [
+			{ input: 'retypepassword', row: 'rowretypepassword' },
+			{ input: 'retypereminder', row: 'rowretypereminder' }
+		];
+		pairs.forEach(function (p) {
+			var input = document.getElementById(p.input);
+			if (!input) return;
+			var tr = input.closest('tr');
+			if (!tr) return;
+			if (!tr.id) tr.id = p.row;
+			console.log('[register.js] wrapped ' + p.input + ' into #' + p.row);
+		});
+	}
 
 	function init() {
 		console.log('[register.js] init() called');
@@ -83,9 +105,9 @@
 			return;
 		}
 
-		// The platform puts <form> inside a table row, so the browser extracts it via
-		// foster parenting — the form element ends up as a sibling of the table, not
-		// its parent. Find the table and cartOption independently of the form element.
+		// Platform foster-parenting means the form is extracted out of the
+		// table and ends up as a sibling. Anchor everything to the table that
+		// contains #rowpersonType.
 		var firstRow = document.getElementById('rowpersonType');
 		var formTable = firstRow ? firstRow.closest('table') : null;
 		var cartOption = document.querySelector('.cartOption');
@@ -96,17 +118,13 @@
 			return;
 		}
 
-		// The workshop section has two anonymous <tr>s before the company field rows:
-		// one with a note div and one with the skipCompany checkbox.
-		var skipCompanyEl = document.getElementById('skipCompany');
-		console.log('[register.js] skipCompany el:', skipCompanyEl);
-		if (skipCompanyEl) {
-			var headerRow = skipCompanyEl.closest('tr');
-			if (headerRow && !headerRow.id) headerRow.id = 'rowWorkshopHeader';
-			var noteRow = headerRow && headerRow.previousElementSibling;
-			if (noteRow && !noteRow.id) noteRow.id = 'rowWorkshopNote';
-			console.log('[register.js] workshopNote row:', noteRow, '| workshopHeader row:', headerRow);
-		}
+		wrapRetypes();
+
+		// Tracks which missing-row ids we've already warned about, so each
+		// platform UDF rename only logs once. Must be initialized before
+		// validateStepConfig() and paintStep() run.
+		var warnedRows = {};
+		validateStepConfig(warnedRows);
 
 		if (cartOption) cartOption.style.display = 'none';
 
@@ -155,6 +173,37 @@
 			return row.classList.contains('hidden');
 		}
 
+		/*
+		 * Hide every row the wizard knows about that is NOT part of the current
+		 * step. This catches rows that the platform auto-renders but the user
+		 * shouldn't see yet (e.g. emergency-contact rows on Step 1).
+		 *
+		 * It also ensures no row id in our STEPS config is silently missing —
+		 * we log a warning once per missing row so future platform UDF renames
+		 * surface in devtools instead of producing an invisible step.
+		 */
+		function paintStep(step) {
+			STEPS.forEach(function (s, i) {
+				s.rows.forEach(function (rowId) {
+					var row = document.getElementById(rowId);
+					if (!row) {
+						if (!warnedRows[rowId]) {
+							console.warn('[register.js] configured row not found in DOM: ' + rowId + ' (step "' + s.title + '")');
+							warnedRows[rowId] = true;
+						}
+						return;
+					}
+					if (i === step) {
+						// Clear our inline override — let the platform's class control
+						// conditional visibility (e.g. class="hidden" toggled by the platform)
+						row.style.display = '';
+					} else {
+						row.style.display = 'none';
+					}
+				});
+			});
+		}
+
 		function renderIndicator() {
 			indicator.innerHTML = '';
 			STEPS.forEach(function (s, i) {
@@ -185,21 +234,7 @@
 
 		function showStep(step) {
 			currentStep = step;
-
-			STEPS.forEach(function (s, i) {
-				s.rows.forEach(function (rowId) {
-					var row = document.getElementById(rowId);
-					if (!row) return;
-					if (i === step) {
-						// Clear our inline override — let the platform's class control
-						// conditional visibility (e.g. class="hidden" toggled by the platform)
-						row.style.display = '';
-					} else {
-						row.style.display = 'none';
-					}
-				});
-			});
-
+			paintStep(step);
 			renderIndicator();
 
 			backBtn.style.display   = step === 0 ? 'none' : '';
@@ -232,6 +267,12 @@
 
 				row.querySelectorAll('[mandatory]').forEach(function (field) {
 					if (field.disabled || field.type === 'hidden') return;
+					// retypepassword ships mandatory='Password is required' (no period).
+					// Suppress its standalone message — we'll surface it as a mismatch
+					// below if the originals differ. Otherwise users see a misleading
+					// "Password is required" when only the retype box is empty.
+					if (field.id === 'retypepassword' || field.id === 'retypereminder') return;
+
 					var val = (field.value || '').trim();
 					if (val === '' || val === '0') {
 						errors.push(field.getAttribute('mandatory'));
@@ -240,19 +281,32 @@
 				});
 			});
 
-			// Match checks for fields that share a row (no separate mandatory on retype fields)
+			// Match checks for password and security answer on Step 2. We skip the
+			// retype fields' own mandatory attributes above (they ship a
+			// duplicate "Password is required" string without a period), so
+			// this is the only place those fields get validated.
 			if (currentStep === 1) {
 				var pw  = document.getElementById('password');
 				var rpw = document.getElementById('retypepassword');
 				var sa  = document.getElementById('reminder');
 				var rsa = document.getElementById('retypereminder');
-				if (pw && rpw && pw.value && rpw.value !== pw.value) {
-					errors.push('Passwords do not match.');
-					rpw.classList.add('cf-wizard-field-error');
+				if (pw && rpw && pw.value) {
+					if (!rpw.value) {
+						errors.push('Please re-enter your password.');
+						rpw.classList.add('cf-wizard-field-error');
+					} else if (rpw.value !== pw.value) {
+						errors.push('Passwords do not match.');
+						rpw.classList.add('cf-wizard-field-error');
+					}
 				}
-				if (sa && rsa && sa.value && rsa.value !== sa.value) {
-					errors.push('Security answers do not match.');
-					rsa.classList.add('cf-wizard-field-error');
+				if (sa && rsa && sa.value) {
+					if (!rsa.value) {
+						errors.push('Please re-enter your security answer.');
+						rsa.classList.add('cf-wizard-field-error');
+					} else if (rsa.value !== sa.value) {
+						errors.push('Security answers do not match.');
+						rsa.classList.add('cf-wizard-field-error');
+					}
 				}
 			}
 
@@ -271,6 +325,22 @@
 			errorBox.appendChild(ul);
 			errorBox.style.display = '';
 			return false;
+		}
+
+		/*
+		 * Sanity-check the STEPS config against the live DOM. Warn (once per id)
+		 * about configured rows that aren't on the page so future platform
+		 * renames surface in devtools. Called once after wrapRetypes().
+		 */
+		function validateStepConfig(warnedRows) {
+			STEPS.forEach(function (s) {
+				s.rows.forEach(function (rowId) {
+					if (!document.getElementById(rowId) && !warnedRows[rowId]) {
+						console.warn('[register.js] configured row missing in DOM: ' + rowId + ' (step "' + s.title + '")');
+						warnedRows[rowId] = true;
+					}
+				});
+			});
 		}
 
 		nextBtn.addEventListener('click', function () {
