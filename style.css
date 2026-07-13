@@ -1251,6 +1251,11 @@ span.cardText {
   align-items: center;
   gap: 6px;
   flex-shrink: 0;
+  /* Prevent the global .active { background-color:#3e0c70; color:white; }
+     from painting a purple square behind the step and washing out the
+     purple step-title label below the circle. */
+  background-color: transparent;
+  color: inherit;
 }
 .cf-wizard-step-circle {
   width: 36px;
