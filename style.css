@@ -386,15 +386,14 @@ table:has(tr:first-child h1.subHeader) {
 /* Non-clickable section header between nav items and category list */
 .leftMenu .cf-menu-section-header {
   margin-top: 30px;
-  padding: 10px 15px 8px;
+  padding: 13px 15px;
   font-family: "Oswald", sans-serif;
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-weight: 700;
   color: #3e0c70;
   background: #fff;
   cursor: default;
   list-style: none;
-  border-top: 1px solid #ccc;
 }
 .leftMenu ul.Level01 li a {
   font-weight: normal;
@@ -1062,9 +1061,9 @@ a:focus-visible,
     font-size: 1.1em;
   }
   .leftMenu > ul.cf-mobile-open li.cf-menu-section-header {
-    padding: 14px 15px 8px;
-    font-size: 0.9rem;
-    text-align: center;
+    padding: 13px 15px;
+    font-size: 1rem;
+    text-align: left;
   }
 
   /* Header: stack logo on its own row and pull the cart icon to the right.
