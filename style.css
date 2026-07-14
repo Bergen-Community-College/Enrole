@@ -1066,22 +1066,24 @@ a:focus-visible,
     text-align: left;
   }
 
-  /* Header: stack logo on its own row and pull the cart icon to the right.
-     The platform's #header is a real <table> — convert it to a flex layout
-     so we can reflow its 3 cells (logo / login / cart). */
+  /* Header: logo and cart on the same row, login form hidden on mobile.
+   The platform's #header is a real <table> — convert it to a flex layout
+   so we can reflow its 3 cells (logo / login / cart). */
   #header > table,
   #header > table > tbody,
   #header > table > tbody > tr {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     width: 100%;
+    align-items: center;
   }
   #header > table > tbody > tr > td {
     display: block;
-    width: 100%;
+    width: auto;
   }
-  /* Logo cell: full row, logo left-aligned */
+  /* Logo cell: grows to fill, left-aligned */
   #header > table > tbody > tr > td:first-child {
+    flex: 1 1 auto;
     text-align: left;
   }
   /* Login cell: hidden on mobile — a "Sign in/Create profile" link lives in
@@ -1089,19 +1091,10 @@ a:focus-visible,
   #header > table > tbody > tr > td:nth-child(2) {
     display: none;
   }
-  /* Cart cell: same row as logo, aligned right */
+  /* Cart cell: sized to content, right-aligned */
   #header > table > tbody > tr > td:last-child {
-    display: block;
-    width: auto;
+    flex: 0 0 auto;
     text-align: right;
-  }
-  /* Reposition the cart so it overlaps the top-right of the header row */
-  #header > table > tbody > tr {
-    flex-direction: row;
-    align-items: center;
-  }
-  #header > table > tbody > tr > td:first-child {
-    flex: 1 1 auto;
   }
   #header_title {
     max-width: 60%;

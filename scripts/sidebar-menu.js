@@ -163,9 +163,13 @@
       targetUl.appendChild(matchedByIndex[mi].li);
     }
     // Insert a non-clickable "Find Your Program" header between the matched
-    // nav items and the unmatched category list — but only when there are
-    // unmatched items (i.e. the second/category menu is present on the page).
-    if (unmatched.length > 0) {
+    // nav items and the unmatched category list — but only when there were
+    // multiple .leftMenu blocks on the page (i.e. the second/category menu
+    // was present and its items were merged in). On pages with only one
+    // .leftMenu, unmatched items like "Search by Instructor" would
+    // incorrectly trigger the header.
+    var hadSecondMenu = leftMenus.length >= 2;
+    if (unmatched.length > 0 && hadSecondMenu) {
       var headerLi = document.createElement("li");
       headerLi.className = "cf-menu-section-header";
       headerLi.textContent = "Find Your Program";
