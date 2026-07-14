@@ -69,6 +69,11 @@
     var leftMenus = document.querySelectorAll(".leftMenu");
     if (leftMenus.length < 1) return;
 
+    // Capture whether the platform rendered a second (category) menu before
+    // we merge and remove its wrapper. Used later to decide whether to show
+    // the "Find Your Program" section header.
+    var hadSecondMenu = leftMenus.length >= 2;
+
     var targetUl = leftMenus[0].querySelector("ul");
     if (!targetUl) return;
 
@@ -168,8 +173,7 @@
     // was present and its items were merged in). On pages with only one
     // .leftMenu, unmatched items like "Search by Instructor" would
     // incorrectly trigger the header.
-    var hadSecondMenu = leftMenus.length >= 2;
-    if (unmatched.length > 0 && hadSecondMenu) {
+    if (unmatched.length > 0 && hadSecondMenu && !isMinimal) {
       var headerLi = document.createElement("li");
       headerLi.className = "cf-menu-section-header";
       headerLi.textContent = "Find Your Program";

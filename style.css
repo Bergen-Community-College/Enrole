@@ -1094,6 +1094,7 @@ a:focus-visible,
   /* Cart cell: sized to content, right-aligned */
   #header > table > tbody > tr > td:last-child {
     flex: 0 0 auto;
+    width: auto;
     text-align: right;
   }
   #header_title {
