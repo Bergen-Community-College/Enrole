@@ -67,12 +67,14 @@
     }
 
     var leftMenus = document.querySelectorAll(".leftMenu");
-    if (leftMenus.length < 2) return;
+    if (leftMenus.length < 1) return;
 
     var targetUl = leftMenus[0].querySelector("ul");
     if (!targetUl) return;
 
-    // Move all <li> children from every .leftMenu into the first ul
+    // Move all <li> children from every additional .leftMenu into the first ul.
+    // Skip if there's only one .leftMenu (the merge is a no-op but we still
+    // proceed to filtering, sorting, and mobile-toggle creation below).
     for (var m = 1; m < leftMenus.length; m++) {
       var uls = leftMenus[m].querySelectorAll("ul");
       for (var u = 0; u < uls.length; u++) {
