@@ -1020,17 +1020,28 @@ a:focus-visible,
 }
 
 @media (max-width: 767px) {
+  /* Ensure the sidebar container is visible and not floated on mobile */
+  #popularContainer {
+    float: none !important;
+    display: block !important;
+    width: 100% !important;
+    clear: both !important;
+  }
+  .leftMenu {
+    display: block !important;
+  }
+
   /* Show the toggle button on mobile */
   .cf-mobile-menu-toggle {
-    display: flex;
+    display: flex !important;
   }
 
   /* Hide the merged menu by default; show it as a single column when open */
   .leftMenu > ul {
-    display: none;
+    display: none !important;
   }
   .leftMenu > ul.cf-mobile-open {
-    display: flex;
+    display: flex !important;
     flex-direction: column;
     grid-template-columns: none !important;
     grid-gap: 0 !important;
