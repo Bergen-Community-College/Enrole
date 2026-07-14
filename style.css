@@ -383,6 +383,20 @@ table:has(tr:first-child h1.subHeader) {
 .leftMenu i.hidden {
   display: none;
 }
+/* Non-clickable section header between nav items and category list */
+.leftMenu .cf-menu-section-header {
+  padding: 18px 15px 6px;
+  font-family: "Oswald", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #3e0c70;
+  background: #eee;
+  cursor: default;
+  list-style: none;
+  border-top: 2px solid #3e0c70;
+}
 .leftMenu ul.Level01 li a {
   font-weight: normal;
   font-size: 0.95em;
@@ -955,6 +969,197 @@ a:focus-visible,
   }
   .leftMenu > ul {
     grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+/*
+ * ──────────────────────────────────────────────────────────────────────────
+ * Mobile menu (≤767px)
+ *
+ * The merged .leftMenu <ul> contains 15+ items. On mobile we collapse it
+ * behind a toggle button (injected by sidebar-menu.js). Hidden by default;
+ * only the toggle is visible. When the user taps it, .cf-mobile-open is
+ * toggled on the <ul> and the items appear as a single-column list with
+ * comfortable 44px touch targets.
+ * ──────────────────────────────────────────────────────────────────────────
+ */
+.cf-mobile-menu-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  width: 100%;
+  padding: 13px 15px;
+  background: #3e0c70;
+  color: #fff;
+  border: 0;
+  border-radius: 0;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 700;
+  text-align: center;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  min-height: 44px;
+  box-sizing: border-box;
+}
+.cf-mobile-menu-toggle-icon {
+  font-size: 1.2em;
+  line-height: 1;
+}
+/* Swap ☰ for ✕ when the toggle is open */
+.cf-mobile-menu-toggle[aria-expanded="true"] .cf-mobile-menu-toggle-icon {
+  font-size: 0;
+}
+.cf-mobile-menu-toggle[aria-expanded="true"] .cf-mobile-menu-toggle-icon::after {
+  content: "✕";
+  font-size: 1rem;
+}
+.cf-mobile-menu-toggle[aria-expanded="true"] .cf-mobile-menu-toggle-label {
+  /* "Menu" reuses the same label — no swap needed */
+}
+
+@media (max-width: 767px) {
+  /* Show the toggle button on mobile */
+  .cf-mobile-menu-toggle {
+    display: flex;
+  }
+
+  /* Hide the merged menu by default; show it as a single column when open */
+  .leftMenu > ul {
+    display: none;
+  }
+  .leftMenu > ul.cf-mobile-open {
+    display: flex;
+    flex-direction: column;
+    grid-template-columns: none !important;
+    grid-gap: 0 !important;
+  }
+  /* Comfortable touch targets */
+  .leftMenu > ul.cf-mobile-open li a {
+    border: 0;
+    border-top: 1px solid #ccc;
+    font-size: 1rem;
+    padding: 13px 15px;
+    min-height: 44px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    gap: 0.6em;
+  }
+  .leftMenu > ul.cf-mobile-open li i {
+    font-size: 1.1em;
+  }
+  .leftMenu > ul.cf-mobile-open li.cf-menu-section-header {
+    padding: 14px 15px 8px;
+    font-size: 0.9rem;
+    text-align: center;
+  }
+
+  /* Header: stack logo on its own row and pull the cart icon to the right.
+     The platform's #header is a real <table> — convert it to a flex layout
+     so we can reflow its 3 cells (logo / login / cart). */
+  #header > table,
+  #header > table > tbody,
+  #header > table > tbody > tr {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  #header > table > tbody > tr > td {
+    display: block;
+    width: 100%;
+  }
+  /* Logo cell: full row, logo left-aligned */
+  #header > table > tbody > tr > td:first-child {
+    text-align: left;
+  }
+  /* Login cell: hidden on mobile — a "Sign in/Create profile" link lives in
+     the merged menu, so the inline form is redundant and crowds the header */
+  #header > table > tbody > tr > td:nth-child(2) {
+    display: none;
+  }
+  /* Cart cell: same row as logo, aligned right */
+  #header > table > tbody > tr > td:last-child {
+    display: block;
+    width: auto;
+    text-align: right;
+  }
+  /* Reposition the cart so it overlaps the top-right of the header row */
+  #header > table > tbody > tr {
+    flex-direction: row;
+    align-items: center;
+  }
+  #header > table > tbody > tr > td:first-child {
+    flex: 1 1 auto;
+  }
+  #header_title {
+    max-width: 60%;
+  }
+  #header_title img {
+    height: 48px;
+  }
+  #cartCount {
+    font-size: 0.9rem;
+  }
+
+  /* Search bar: full width, centered, generous padding */
+  #search {
+    width: 100%;
+    margin: 0 auto 1rem;
+  }
+  #search form {
+    height: 44px;
+  }
+
+  /* Card container already collapses to 1 column at base — enforce it */
+  div.cardContainer {
+    grid-template-columns: 1fr !important;
+    gap: 12px;
+  }
+
+  /* Registration wizard step indicator: allow horizontal scroll with
+     snappy labels so 5 steps + 4 connectors don't crowd */
+  #cf-wizard-steps {
+    padding: 16px 0 20px;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity;
+  }
+  .cf-wizard-step-item {
+    scroll-snap-align: center;
+  }
+  .cf-wizard-step-label {
+    font-size: 0.6rem;
+    max-width: 80px;
+  }
+  #cf-wizard-nav {
+    flex-wrap: wrap;
+  }
+  .cf-wizard-btn {
+    flex: 1 1 45%;
+  }
+
+  /* Tighter horizontal padding on mobile so content has more breathing room */
+  #wholeContent {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  #content {
+    float: none;
+    clear: none;
+  }
+  #content .inner {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  /* Course/registration form tables: don't overflow horizontally —
+     let them scroll inside their container if needed */
+  .courseinner,
+  form[action*="form_addAttendee"] ~ table,
+  .logform {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
   }
 }
 

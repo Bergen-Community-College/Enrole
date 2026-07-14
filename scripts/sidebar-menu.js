@@ -160,6 +160,15 @@
     for (var mi = 0; mi < matchedByIndex.length; mi++) {
       targetUl.appendChild(matchedByIndex[mi].li);
     }
+    // Insert a non-clickable "Find Your Program" header between the matched
+    // nav items and the unmatched category list — but only when there are
+    // unmatched items (i.e. the second/category menu is present on the page).
+    if (unmatched.length > 0) {
+      var headerLi = document.createElement("li");
+      headerLi.className = "cf-menu-section-header";
+      headerLi.textContent = "Find Your Program";
+      targetUl.appendChild(headerLi);
+    }
     for (var ui = 0; ui < unmatched.length; ui++) {
       targetUl.appendChild(unmatched[ui]);
     }
@@ -183,6 +192,29 @@
         break;
       }
     }
+
+    // Insert a mobile-only toggle button before the merged <ul>. On desktop
+    // the button is hidden via CSS. On mobile it collapses the long merged
+    // list so the user isn't confronted with a wall of 15+ items.
+    var toggle = document.createElement("button");
+    toggle.type = "button";
+    toggle.className = "cf-mobile-menu-toggle";
+    toggle.setAttribute("aria-expanded", "false");
+    toggle.setAttribute("aria-controls", "cf-merged-menu");
+    toggle.innerHTML =
+      '<span class="cf-mobile-menu-toggle-icon" aria-hidden="true">☰</span>' +
+      '<span class="cf-mobile-menu-toggle-label">Menu</span>';
+    targetUl.id = "cf-merged-menu";
+    targetUl.parentNode.insertBefore(toggle, targetUl);
+
+    var labelEl = toggle.querySelector(".cf-mobile-menu-toggle-label");
+
+    toggle.addEventListener("click", function () {
+      var open = toggle.getAttribute("aria-expanded") === "true";
+      toggle.setAttribute("aria-expanded", open ? "false" : "true");
+      labelEl.textContent = open ? "Menu" : "Close";
+      targetUl.classList.toggle("cf-mobile-open", !open);
+    });
   }
 
   if (document.readyState === "loading") {
